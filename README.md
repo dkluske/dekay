@@ -1,14 +1,26 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+<!-- Insert more Badges here -->
+[![Kotlin](https://img.shields.io/badge/kotlin-2.1.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+# Welcome to `dekay`!
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+`dekay` is an open source Kotlin Multiplatform application for various use cases in the normal everyday life, especially helping you live a healthy life.
+The general purpose of this project is to become independent on paid subscriptions for mobile apps, that basically give you statistics about your health status and habits. 
 
+## Key features
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+With `dekay` you will be able to track your:
+- health statistics with some neat charts and raw data
+- habits for your everyday life
+- meals and calories
+- workouts
+
+## Tech Stack
+
+| Tech                  | Description                                                    |
+|-----------------------|----------------------------------------------------------------|
+| Kotlin                | The programming language.                                      |
+| Compose Multiplatform | A framework for kotlin multiplatform based on Jetpack Compose. |
+
+## Authors
+
+- Dominik Kluske - ![@dkluske](https://github.com/dkluske) - 2025
