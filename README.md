@@ -2,6 +2,14 @@
 [![Kotlin](https://img.shields.io/badge/kotlin-2.1.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![Release](https://img.shields.io/github/v/release/dkluske/dekay)](https://github.com/dkluske/dekay/releases)
 
+<div align="center">
+
+  <picture>
+    <img alt="dekay logo" src="/statics/dekay_pill.png">
+  </picture>
+
+</div>
+
 # Welcome to `dekay`!
 
 `dekay` is an open source Kotlin Multiplatform application for various use cases in the normal everyday life, especially helping you live a healthy life.
