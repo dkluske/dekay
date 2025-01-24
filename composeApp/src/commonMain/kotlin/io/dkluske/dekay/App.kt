@@ -27,6 +27,7 @@ fun App() {
                 is View.Charts -> TODO()
                 is View.Habits -> TODO()
                 is View.Settings -> TODO()
+                is View.Init -> TODO()
             }
         }
     }
