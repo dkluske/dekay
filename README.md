@@ -1,5 +1,6 @@
 <!-- Insert more Badges here -->
 [![Kotlin](https://img.shields.io/badge/kotlin-2.1.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Release](https://img.shields.io/github/v/release/dkluske/dekay)](https://github.com/dkluske/dekay/releases)
 
 # Welcome to `dekay`!
 
@@ -20,6 +21,25 @@ With `dekay` you will be able to track your:
 |-----------------------|----------------------------------------------------------------|
 | Kotlin                | The programming language.                                      |
 | Compose Multiplatform | A framework for kotlin multiplatform based on Jetpack Compose. |
+
+## Usage
+
+To deploy the app on your phone, you will need to download the specific app-file for your operating system from the latest actions workflow.
+
+After you obtained the file, you will have to proceed with the individual steps, that are needed to deploy an application to your operating system.
+
+**Note:** This procedure is required, because this project has no independent - project specific - organization currently. Therefore there are no credentials for a general deployment available currently. Might change in the future.
+
+### iOS
+
+- Sign the built `ipa` file with your AppleId.
+- Deploy the signed file to an app distribution service of your desire.
+  - For Example: Google Firebase App Distribution
+- Download and install the app from the distribution on your iPhone. 
+
+### Android
+
+-
 
 ## Authors
 
