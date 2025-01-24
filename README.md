@@ -40,14 +40,15 @@ After you obtained the file, you will have to proceed with the individual steps,
 
 ### iOS
 
-- Sign the built `ipa` file with your AppleId.
+- Sign the built `.ipa` file with your AppleId.
 - Deploy the signed file to an app distribution service of your desire.
   - For Example: Google Firebase App Distribution
-- Download and install the app from the distribution on your iPhone. 
+- Download and install the app from the distribution on your iPhone.
 
 ### Android
 
--
+- Download the `.apk` file on your android device.
+- Install the application by executing the `.apk` file on the device. 
 
 ## Authors
 
