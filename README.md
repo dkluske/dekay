@@ -52,4 +52,4 @@ After you obtained the file, you will have to proceed with the individual steps,
 
 ## Authors
 
-- Dominik Kluske - ![@dkluske](https://github.com/dkluske) - 2025
+- Dominik Kluske - [@dkluske](https://github.com/dkluske) - 2025
