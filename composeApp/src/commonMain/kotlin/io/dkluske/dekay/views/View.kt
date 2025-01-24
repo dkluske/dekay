@@ -8,4 +8,6 @@ sealed interface View {
     class Settings : View
 
     class Charts : View
+
+    class Init : View
 }
