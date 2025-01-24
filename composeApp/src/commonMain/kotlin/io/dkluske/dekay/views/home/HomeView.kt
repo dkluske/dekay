@@ -11,6 +11,7 @@ import io.dkluske.dekay.views.UI
 fun HomeView(
     ui: UI
 ) {
+    // TODO: add wrapper with hovering taskbar
     Row(Modifier.fillMaxWidth()) {
         Text(
             text = "Hi ${ui.configuration.value.username}"
