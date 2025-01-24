@@ -17,7 +17,7 @@ fun App() {
     MaterialTheme(
         colors = CUSTOM_THEME_DARK
     ) {
-        val ui = UI()
+        val ui = remember { UI() }
         Column(Modifier.fillMaxSize()) {
             when (ui.state.value) {
                 is View.Home -> {
