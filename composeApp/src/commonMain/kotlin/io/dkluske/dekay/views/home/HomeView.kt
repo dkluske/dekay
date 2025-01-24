@@ -6,15 +6,17 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import io.dkluske.dekay.views.UI
+import io.dkluske.dekay.views.ViewWrapper
 
 @Composable
 fun HomeView(
     ui: UI
 ) {
-    // TODO: add wrapper with hovering taskbar
-    Row(Modifier.fillMaxWidth()) {
-        Text(
-            text = "Hi ${ui.configuration.value.username}"
-        )
+    ViewWrapper {
+        Row(Modifier.fillMaxWidth()) {
+            Text(
+                text = "Hi ${ui.configuration.value.username}"
+            )
+        }
     }
 }
