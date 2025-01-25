@@ -5,6 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import io.dkluske.dekay.util.Configuration
 
 data class UI(
-    val state: MutableState<View> = mutableStateOf(View.Home()),
+    val state: MutableState<View>,
     val configuration: MutableState<Configuration> = mutableStateOf(Configuration())
 )
