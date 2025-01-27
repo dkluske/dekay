@@ -34,10 +34,8 @@ kotlin {
     }
     
     sourceSets {
-        val jvmMain by getting {
-            dependencies {
-                implementation(compose.desktop.currentOs)
-            }
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
         }
         
         androidMain.dependencies {
