@@ -1,18 +1,19 @@
 package io.dkluske.dekay.views.home
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
 import io.dkluske.dekay.views.UI
-import io.dkluske.dekay.views.ViewWrapper
 
 @Composable
 fun HomeView(
     ui: UI
 ) {
-    ViewWrapper {
+    Column {
+
         PaddedMaxWidthRow {
             CardText(
                 text = "Hi ${ui.configuration.value.username}!"
