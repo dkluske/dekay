@@ -1,5 +1,7 @@
 package io.dkluske.dekay
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
@@ -17,7 +19,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App() {
     MaterialTheme(
-        colors = CUSTOM_THEME_DARK,
+        colors = CUSTOM_THEME_DARK
     ) {
         val init = false // TODO: check if config
         val initialView = mutableStateOf(
@@ -28,17 +30,23 @@ fun App() {
             }
         )
         val ui = remember { UI(state = initialView) }
-        Column(Modifier.fillMaxSize()) {
-            when (ui.state.value) {
-                is View.Home -> {
-                    HomeView(ui = ui)
-                }
 
-                is View.Charts -> TODO()
-                is View.Habits -> TODO()
-                is View.Settings -> TODO()
-                is View.Init -> TODO()
+        BoxWithConstraints(
+            modifier = Modifier.background(CUSTOM_THEME_DARK.background)
+        ) {
+            Column(Modifier.fillMaxSize()) {
+                when (ui.state.value) {
+                    is View.Home -> {
+                        HomeView(ui = ui)
+                    }
+
+                    is View.Charts -> TODO()
+                    is View.Habits -> TODO()
+                    is View.Settings -> TODO()
+                    is View.Init -> TODO()
+                }
             }
         }
+
     }
 }

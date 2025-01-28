@@ -16,11 +16,7 @@ kotlin {
         }
     }
 
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "17"
-        }
-    }
+    jvm()
     
     listOf(
         iosX64(),
@@ -51,6 +47,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            /*implementation(libs.androidx.material3)*/ // TODO: compose 3 for ios available at 1.5.0
+            implementation(libs.jetbrains.compose.material3)
         }
     }
 }

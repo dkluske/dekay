@@ -1,6 +1,5 @@
 package io.dkluske.dekay.views.home
 
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
@@ -15,8 +14,8 @@ fun HomeView(
 ) {
     ViewWrapper {
         PaddedMaxWidthRow {
-            Text(
-                text = "Hi ${ui.configuration.value.username}"
+            CardText(
+                text = "Hi ${ui.configuration.value.username}!"
             )
         }
         PaddedMaxWidthRow {
@@ -28,6 +27,11 @@ fun HomeView(
                 downRight = { CardText(text = "downRight") }
             )
         }
+
+        CardText(
+            text = "Workouts"
+        )
+
         PaddedMaxWidthRow {
             // TODO: Add Workout Data #4
             val mockupData = listOf(
@@ -44,6 +48,10 @@ fun HomeView(
                 supplier = { it }
             )
         }
+
+        CardText(
+            text = "Meals"
+        )
 
         PaddedMaxWidthRow {
             // TODO: Add Meal Data #4

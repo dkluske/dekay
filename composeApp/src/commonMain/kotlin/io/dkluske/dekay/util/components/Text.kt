@@ -11,7 +11,8 @@ import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 
 @Composable
 fun CardText(
-    text: String
+    text: String,
+    modifier: Modifier = Modifier
 ) {
     Text(
         text = text,
@@ -19,6 +20,6 @@ fun CardText(
         style = TextStyle(
             fontSize = 25.sp
         ),
-        modifier = Modifier.padding(16.dp)
+        modifier = modifier.padding(16.dp)
     )
 }
