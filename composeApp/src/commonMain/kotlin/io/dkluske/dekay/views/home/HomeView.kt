@@ -48,6 +48,7 @@ fun HomeView(
             CardList(
                 itemList = mockupData,
                 supplier = { it }
+                // TODO: add showMoreAction when uis are built
             )
         }
 
@@ -68,6 +69,7 @@ fun HomeView(
             CardList(
                 itemList = mockupData,
                 supplier = { it }
+                // TODO: add showMoreAction when uis are built
             )
         }
     }
