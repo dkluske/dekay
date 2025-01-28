@@ -3,6 +3,7 @@ package io.dkluske.dekay.views.home
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import io.dkluske.dekay.util.components.CardList
+import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
 import io.dkluske.dekay.views.UI
@@ -21,10 +22,10 @@ fun HomeView(
         PaddedMaxWidthRow {
             // TODO: Add Health Data #4
             CardWithFourContents(
-                upLeft = { Text(text = "upLeft") },
-                upRight = { Text(text = "upRight") },
-                downLeft = { Text(text = "downLeft") },
-                downRight = { Text(text = "downRight") }
+                upLeft = { CardText(text = "upLeft") },
+                upRight = { CardText(text = "upRight") },
+                downLeft = { CardText(text = "downLeft") },
+                downRight = { CardText(text = "downRight") }
             )
         }
         PaddedMaxWidthRow {

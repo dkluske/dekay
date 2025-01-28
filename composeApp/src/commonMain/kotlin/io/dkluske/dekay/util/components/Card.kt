@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,7 +21,7 @@ fun Card(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(4.dp)
+            .padding(8.dp)
             .background(
                 CUSTOM_THEME_DARK.surface,
                 RoundedCornerShape(8.dp)
@@ -40,7 +39,7 @@ fun CardWithFourContents(
     downRight: @Composable () -> Unit
 ) {
     Card {
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
             Column(modifier = Modifier.weight(1f)) {
                 upLeft()
             }
@@ -48,7 +47,7 @@ fun CardWithFourContents(
                 upRight()
             }
         }
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.fillMaxWidth().padding(8.dp)) {
             Column(modifier = Modifier.weight(1f)) {
                 downLeft()
             }
@@ -73,7 +72,7 @@ fun <T : Any> CardList(
     LazyColumn {
         items(cards) { item ->
             Card {
-                Text(item)
+                CardText(item)
             }
         }
     }
@@ -85,7 +84,7 @@ fun <T : Any> CardList(
                         it.invoke()
                     },
                     content = {
-                        Text("Show more") // TODO: localization
+                        CardText("Show more ->") // TODO: localization
                     }
                 )
             }

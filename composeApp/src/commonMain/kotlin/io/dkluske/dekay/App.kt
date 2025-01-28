@@ -17,7 +17,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App() {
     MaterialTheme(
-        colors = CUSTOM_THEME_DARK
+        colors = CUSTOM_THEME_DARK,
     ) {
         val init = false // TODO: check if config
         val initialView = mutableStateOf(
