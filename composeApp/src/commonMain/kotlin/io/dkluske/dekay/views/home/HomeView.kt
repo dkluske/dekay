@@ -13,10 +13,10 @@ fun HomeView(
     ui: UI
 ) {
     Column {
-
         PaddedMaxWidthRow {
             CardText(
-                text = "Hi ${ui.configuration.value.username}!"
+                text = "Hi ${ui.configuration.value.username}!",
+                scaleFactor = 1.5f
             )
         }
         PaddedMaxWidthRow {
@@ -30,7 +30,8 @@ fun HomeView(
         }
 
         CardText(
-            text = "Workouts"
+            text = "Workouts",
+            scaleFactor = 1.2f
         )
 
         PaddedMaxWidthRow {
@@ -51,7 +52,8 @@ fun HomeView(
         }
 
         CardText(
-            text = "Meals"
+            text = "Meals",
+            scaleFactor = 1.2f
         )
 
         PaddedMaxWidthRow {

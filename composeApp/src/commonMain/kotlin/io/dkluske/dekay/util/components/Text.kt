@@ -12,13 +12,14 @@ import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 @Composable
 fun CardText(
     text: String,
+    scaleFactor: Float = 1f,
     modifier: Modifier = Modifier
 ) {
     Text(
         text = text,
         color = CUSTOM_THEME_DARK.onPrimary,
         style = TextStyle(
-            fontSize = 25.sp
+            fontSize = (25 * scaleFactor).sp
         ),
         modifier = modifier.padding(16.dp)
     )
