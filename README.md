@@ -1,5 +1,5 @@
 <!-- Insert more Badges here -->
-[![Kotlin](https://img.shields.io/badge/kotlin-2.1.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/kotlin-2.1.10-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![Release](https://img.shields.io/github/v/release/dkluske/dekay)](https://github.com/dkluske/dekay/releases)
 
 <div align="center">
