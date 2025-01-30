@@ -26,6 +26,7 @@ import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
+import io.dkluske.dekay.views.habits.HabitsView
 import io.dkluske.dekay.views.home.HomeView
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -94,12 +95,9 @@ fun App() {
                     },
                     content = {
                         when (ui.state.value) {
-                            is View.Home -> {
-                                HomeView(ui = ui)
-                            }
-
+                            is View.Home -> HomeView(ui = ui)
                             is View.Charts -> TODO()
-                            is View.Habits -> TODO()
+                            is View.Habits -> HabitsView(ui = ui)
                             is View.Settings -> TODO()
                             is View.Init -> TODO()
                         }
