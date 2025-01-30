@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 
 @Composable
@@ -21,6 +22,7 @@ fun CardText(
         style = TextStyle(
             fontSize = (25 * scaleFactor).sp
         ),
+        fontWeight = FontWeight.BOLD,
         modifier = modifier.padding(16.dp)
     )
 }
