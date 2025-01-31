@@ -1,12 +1,14 @@
 package io.dkluske.dekay
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -45,67 +47,66 @@ fun App() {
             }
         )
         val ui = remember { UI(state = initialView) }
-
-        BoxWithConstraints(
-            modifier = Modifier.background(CUSTOM_THEME_DARK.background)
-        ) {
-            Column(Modifier.fillMaxSize()) {
-                Scaffold(
-                    bottomBar = {
-                        BottomAppBar(
-                            containerColor = Color.Transparent
+        Scaffold(
+            bottomBar = {
+                BottomAppBar(
+                    containerColor = Color.Transparent
+                ) {
+                    // TODO: add real taskbar content
+                    Card {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceAround
                         ) {
-                            // TODO: add real taskbar content
-                            Card {
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceAround
-                                ) {
-                                    IconButton(
-                                        onClick = {
-                                            ui.state.value = View.Home()
-                                        }
-                                    ) {
-                                        Icon(Icons.Default.Home, "home")
-                                    }
-                                    IconButton(
-                                        onClick = {
-                                            ui.state.value = View.Habits()
-                                        }
-                                    ) {
-                                        Icon(Icons.Default.Add, "habits")
-                                    }
-                                    IconButton(
-                                        onClick = {
-                                            ui.state.value = View.Charts()
-                                        }
-                                    ) {
-                                        Icon(Icons.Default.Done, "charts")
-                                    }
-                                    IconButton(
-                                        onClick = {
-                                            ui.state.value = View.Settings()
-                                        }
-                                    ) {
-                                        Icon(Icons.Default.Settings, "settings")
-                                    }
+                            IconButton(
+                                onClick = {
+                                    ui.state.value = View.Home()
                                 }
+                            ) {
+                                Icon(Icons.Default.Home, "home")
+                            }
+                            IconButton(
+                                onClick = {
+                                    ui.state.value = View.Habits()
+                                }
+                            ) {
+                                Icon(Icons.Default.Add, "habits")
+                            }
+                            IconButton(
+                                onClick = {
+                                    ui.state.value = View.Charts()
+                                }
+                            ) {
+                                Icon(Icons.Default.Done, "charts")
+                            }
+                            IconButton(
+                                onClick = {
+                                    ui.state.value = View.Settings()
+                                }
+                            ) {
+                                Icon(Icons.Default.Settings, "settings")
                             }
                         }
-                    },
-                    content = {
-                        when (ui.state.value) {
-                            is View.Home -> HomeView(ui = ui)
-                            is View.Charts -> TODO()
-                            is View.Habits -> HabitsView(ui = ui)
-                            is View.Settings -> TODO()
-                            is View.Init -> TODO()
+                    }
+                }
+            },
+            backgroundColor = CUSTOM_THEME_DARK.background
+        ) { paddingValues ->
+            BoxWithConstraints(modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars)) {
+                Box() {
+                    Column {
+                        Row(modifier = Modifier.weight(9f)) {
+                            when (ui.state.value) {
+                                is View.Home -> HomeView(ui = ui)
+                                is View.Charts -> TODO()
+                                is View.Habits -> HabitsView(ui = ui)
+                                is View.Settings -> TODO()
+                                is View.Init -> TODO()
+                            }
                         }
-                    },
-                    backgroundColor = CUSTOM_THEME_DARK.background
-                )
+                    }
+                }
             }
         }
-
     }
 }
