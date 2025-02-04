@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
@@ -71,8 +69,8 @@ fun <T : Any> CardList(
         .take(maxItemsBeforeWrap)
         .mapNotNull { supplier.invoke(it) }
 
-    LazyColumn {
-        items(cards) { item ->
+    Column {
+        cards.forEach { item ->
             Card {
                 CardText(item)
             }

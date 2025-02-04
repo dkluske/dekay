@@ -1,11 +1,11 @@
 package io.dkluske.dekay
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -52,7 +52,6 @@ fun App() {
                 BottomAppBar(
                     containerColor = Color.Transparent
                 ) {
-                    // TODO: add real taskbar content
                     Card {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -93,16 +92,16 @@ fun App() {
             backgroundColor = CUSTOM_THEME_DARK.background
         ) { paddingValues ->
             BoxWithConstraints(modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars)) {
-                Box() {
-                    Column {
-                        Row(modifier = Modifier.weight(9f)) {
-                            when (ui.state.value) {
-                                is View.Home -> HomeView(ui = ui)
-                                is View.Charts -> TODO()
-                                is View.Habits -> HabitsView(ui = ui)
-                                is View.Settings -> TODO()
-                                is View.Init -> TODO()
-                            }
+                Column(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Row(modifier = Modifier.weight(9f)) {
+                        when (ui.state.value) {
+                            is View.Home -> HomeView(ui = ui)
+                            is View.Charts -> TODO()
+                            is View.Habits -> HabitsView(ui = ui)
+                            is View.Settings -> TODO()
+                            is View.Init -> TODO()
                         }
                     }
                 }
