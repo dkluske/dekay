@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.Weekday
@@ -35,6 +37,7 @@ import io.dkluske.dekay.util.components.AddButton
 import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
+import io.dkluske.dekay.util.components.TextInput
 import io.dkluske.dekay.views.UI
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -201,14 +204,69 @@ private fun HabitBottomSheet(
                 modal.hide()
             },
             sheetState = sheetState,
-            content = {
-                CardText(
-                    text = "Habit" // TODO: localization
-                )
-            },
             modifier = Modifier
-                .fillMaxWidth(),
-            containerColor = CUSTOM_THEME_DARK.background
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            containerColor = CUSTOM_THEME_DARK.background,
+            content = {
+                val titleInput = remember { mutableStateOf(TextFieldValue()) }
+                val descriptionInput = remember { mutableStateOf(TextFieldValue()) }
+                PaddedMaxWidthRow {
+                    CardText(
+                        text = "Habit" // TODO: localization
+                    )
+                }
+                PaddedMaxWidthRow {
+                    TextInput(
+                        value = titleInput.value.text,
+                        onValueChange = {
+                            titleInput.value = TextFieldValue(it)
+                        },
+                        placeholder = "Title" // TODO: localization
+                    )
+                }
+                PaddedMaxWidthRow {
+                    TextInput(
+                        value = descriptionInput.value.text,
+                        onValueChange = {
+                            descriptionInput.value = TextFieldValue(it)
+                        },
+                        placeholder = "Description", // TODO: localization
+                        minLines = 3
+                    )
+                }
+                PaddedMaxWidthRow {
+                    HabitDays(
+                        checkedOnes = emptyList(),
+                        checkable = true
+                    )
+                }
+                PaddedMaxWidthRow(
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Button(
+                        onClick = {
+                            modal.hide()
+                        }
+                    ) {
+                        CardText(
+                            text = "Cancel", // TODO: localization
+                            scaleFactor = 0.7f
+                        )
+                    }
+                    Button(
+                        onClick = {
+                            // TODO: add habit to db
+                            modal.hide()
+                        }
+                    ) {
+                        CardText(
+                            text = "Add", // TODO: localization
+                            scaleFactor = 0.7f
+                        )
+                    }
+                }
+            },
         )
     }
 
