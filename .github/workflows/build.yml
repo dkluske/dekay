@@ -10,17 +10,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: azul/zulu-openjdk:17-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v2
-        with:
-          java-version: '17'
-          distribution: 'zulu'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
