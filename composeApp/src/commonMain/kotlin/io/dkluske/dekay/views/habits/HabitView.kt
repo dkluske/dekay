@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -244,32 +246,46 @@ private fun HabitBottomSheet(
                 PaddedMaxWidthRow(
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
-                    Button(
-                        onClick = {
-                            modal.hide()
-                        }
+                    AddHabitModalBottomSheetButton(
+                        color = Color.Red,
+                        text = "Cancel" // TODO: localization
                     ) {
-                        CardText(
-                            text = "Cancel", // TODO: localization
-                            scaleFactor = 0.7f
-                        )
+                        modal.hide()
                     }
-                    Button(
-                        onClick = {
-                            // TODO: add habit to db
-                            modal.hide()
-                        }
+                    AddHabitModalBottomSheetButton(
+                        color = Color.Blue,
+                        text = "Add" // TODO: localization
                     ) {
-                        CardText(
-                            text = "Add", // TODO: localization
-                            scaleFactor = 0.7f
-                        )
+                        // TODO: add habit to db
+                        modal.hide()
                     }
                 }
             },
         )
     }
+}
 
+@Composable
+private fun AddHabitModalBottomSheetButton(
+    color: Color,
+    text: String,
+    onClick: () -> Unit
+) {
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = color,
+            contentColor = Color.White,
+            disabledContentColor = Color.DarkGray,
+            disabledContainerColor = color
+        ),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        CardText(
+            text = text,
+            scaleFactor = 0.7f
+        )
+    }
 }
 
 data class AddHabitModalBottomSheet(
