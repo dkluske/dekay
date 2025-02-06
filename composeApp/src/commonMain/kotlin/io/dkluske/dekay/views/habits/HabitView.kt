@@ -12,10 +12,15 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -24,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.Weekday
 import io.dkluske.dekay.util.components.AddButton
 import io.dkluske.dekay.util.components.Card
@@ -47,7 +53,9 @@ data class Habit(
 fun HabitsView(
     ui: UI
 ) {
-    val modalEnabled = remember { mutableStateOf(false) }
+    val modalBottomSheet = AddHabitModalBottomSheet(
+        isShown = remember { mutableStateOf(false) }
+    )
     LazyColumn {
         item {
             PaddedMaxWidthRow(
@@ -58,7 +66,7 @@ fun HabitsView(
                     scaleFactor = 1.5f
                 )
                 AddButton {
-                    modalEnabled.value = true
+                    modalBottomSheet.show()
                 }
             }
         }
@@ -122,6 +130,9 @@ fun HabitsView(
             }
         }
     }
+    HabitBottomSheet(
+        modal = modalBottomSheet
+    )
 }
 
 @Composable
@@ -165,5 +176,52 @@ private fun HabitDays(
                 }
             }
         }
+    }
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun HabitBottomSheet(
+    modal: AddHabitModalBottomSheet
+) {
+    val sheetState = rememberModalBottomSheetState()
+
+    LaunchedEffect(modal.isShown.value) {
+        if (modal.isShown.value) {
+            sheetState.show()
+        } else {
+            sheetState.hide()
+        }
+    }
+
+    // TODO: remove when fixed
+    if (sheetState.isVisible) {
+        ModalBottomSheet(
+            onDismissRequest = {
+                modal.hide()
+            },
+            sheetState = sheetState,
+            content = {
+                CardText(
+                    text = "Habit" // TODO: localization
+                )
+            },
+            modifier = Modifier
+                .fillMaxWidth(),
+            containerColor = CUSTOM_THEME_DARK.background
+        )
+    }
+
+}
+
+data class AddHabitModalBottomSheet(
+    val isShown: MutableState<Boolean>
+) {
+    fun show() {
+        isShown.value = true
+    }
+
+    fun hide() {
+        isShown.value = false
     }
 }
