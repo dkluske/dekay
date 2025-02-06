@@ -89,7 +89,9 @@ fun HabitsView(
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Column {
+                                Column(
+                                    modifier = Modifier.weight(4f)
+                                ) {
                                     Row {
                                         CardText(habit.title)
                                     }
@@ -100,7 +102,9 @@ fun HabitsView(
                                         )
                                     }
                                 }
-                                Column {
+                                Column(
+                                    modifier = Modifier.weight(1f)
+                                ) {
                                     Row {
                                         IconButton(
                                             onClick = {
@@ -130,24 +134,24 @@ private fun HabitDays(
         horizontalArrangement = Arrangement.Start
     ) {
         Weekday.entries.toTypedArray().forEach { day ->
-            if (checkable) {
-                Button(
-                    onClick = {
-                        // TODO: set checked
+            Box(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .background(
+                        Color.LightGray,
+                        CircleShape
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                if (checkable) {
+                    Button(
+                        onClick = {
+                            // TODO: set checked
+                        }
+                    ) {
+                        Text("${day.initial}")
                     }
-                ) {
-                    Text("${day.initial}")
-                }
-            } else {
-                Box(
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .background(
-                            Color.LightGray,
-                            CircleShape
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
+                } else {
                     Text(
                         text = "${day.initial}",
                         modifier = Modifier.padding(4.dp),
