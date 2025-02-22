@@ -5,4 +5,5 @@ CREATE TABLE habit(
     description TEXT
 );
 
-CREATE UNIQUE INDEX id_idx ON habit(id_mostSigBits, id_leastSigBits);
+CREATE UNIQUE INDEX habit_id_idx ON habit(id_mostSigBits, id_leastSigBits);
+CREATE INDEX habit_title_idx ON habit(title);
