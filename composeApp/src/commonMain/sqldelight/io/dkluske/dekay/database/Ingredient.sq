@@ -1,0 +1,42 @@
+CREATE TABLE ingredient (
+    id_leastSigBits INTEGER NOT NULL,
+    id_mostSigBits INTEGER NOT NULL,
+    meal_id_leastSigBits INTEGER NOT NULL,
+    meal_id_mostSigBits INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    calories INTEGER NOT NULL DEFAULT 0,
+    protein INTEGER NOT NULL DEFAULT 0,
+    carbohydrates INTEGER NOT NULL DEFAULT 0,
+    fats INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE UNIQUE INDEX ingredient_id_idx ON ingredient(id_leastSigBits, id_mostSigBits);
+CREATE INDEX ingredient_meal_idx ON ingredient(meal_id_leastSigBits, meal_id_mostSigBits);
+
+selectAll:
+SELECT * FROM ingredient;
+
+selectAllForMeal:
+SELECT * FROM ingredient WHERE meal_id_mostSigBits = ? AND meal_id_leastSigBits = ?;
+
+selectById:
+SELECT * FROM ingredient WHERE id_leastSigBits = ? AND id_mostSigBits = ? LIMIT 1;
+
+selectAllByNameEquals:
+SELECT * FROM ingredient WHERE name = ?;
+
+selectAllByNameLike:
+SELECT * FROM ingredient WHERE name LIKE '%'+?+'%';
+
+insert:
+INSERT INTO ingredient(
+    id_leastSigBits,
+    id_mostSigBits,
+    meal_id_leastSigBits,
+    meal_id_mostSigBits,
+    name,
+    calories,
+    protein,
+    carbohydrates,
+    fats
+) VALUES ?;

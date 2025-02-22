@@ -7,3 +7,20 @@ CREATE TABLE habit(
 
 CREATE UNIQUE INDEX habit_id_idx ON habit(id_mostSigBits, id_leastSigBits);
 CREATE INDEX habit_title_idx ON habit(title);
+
+selectAll:
+SELECT * FROM habit;
+
+selectAllByTitleEquals:
+SELECT * FROM habit WHERE title = ?;
+
+selectAllByTitleLike:
+SELECT * FROM habit WHERE title LIKE '%'+?+'%';
+
+insert:
+INSERT INTO habit(
+    id_mostSigBits,
+    id_leastSigBits,
+    title,
+    description
+) VALUES ?;

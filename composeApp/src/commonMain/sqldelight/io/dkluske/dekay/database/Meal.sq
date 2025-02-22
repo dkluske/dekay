@@ -1,0 +1,27 @@
+CREATE TABLE meal (
+    id_leastSigBits INTEGER NOT NULL,
+    id_mostSigBits INTEGER NOT NULL,
+    name TEXT NOT NULL
+);
+
+CREATE UNIQUE INDEX meal_id_idx ON meal(id_leastSigBits, id_mostSigBits);
+CREATE INDEX meal_name_idx ON meal(name);
+
+selectAll:
+SELECT * FROM meal;
+
+selectById:
+SELECT * FROM meal WHERE id_mostSigBits = ? AND id_leastSigBits = ? LIMIT 1;
+
+selectAllByNameEquals:
+SELECT * FROM meal WHERE name = ?;
+
+selectAllByNameLike:
+SELECT * FROM meal WHERE name LIKE '%'+?+'%';
+
+insert:
+INSERT INTO meal(
+    id_leastSigBits,
+    id_mostSigBits,
+    name
+) VALUES ?;
