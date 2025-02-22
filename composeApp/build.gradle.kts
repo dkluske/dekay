@@ -51,6 +51,7 @@ kotlin {
             /*implementation(libs.androidx.material3)*/ // TODO: compose 3 for ios available at 1.5.0
             implementation(libs.jetbrains.compose.material3)
             implementation(libs.ehsannarmani.composecharts)
+            implementation(libs.sqlite.jdbc)
         }
     }
 }
@@ -84,6 +85,14 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName = "io.dkluske.dekay.database"
+        }
+    }
 }
 
 tasks.withType<JavaExec> {

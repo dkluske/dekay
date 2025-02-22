@@ -1,0 +1,8 @@
+CREATE TABLE habit(
+    id_mostSigBits INTEGER NOT NULL,
+    id_leastSigBits INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT
+);
+
+CREATE UNIQUE INDEX id_idx ON habit(id_mostSigBits, id_leastSigBits);

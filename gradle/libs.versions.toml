@@ -16,6 +16,7 @@ compose-multiplatform = "1.7.3"
 jetbrains-compose-material3 = "1.7.3"
 ehsannarmani-composecharts = "0.1.2"
 sqldelight = "2.1.0-SNAPSHOT"
+sqlite-jdbc = "3.49.1.0"
 
 junit = "4.13.2"
 kotlin = "2.1.10"
@@ -36,6 +37,7 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 ehsannarmani-composecharts = { group = "io.github.ehsannarmani", name = "compose-charts", version.ref = "ehsannarmani-composecharts" }
+sqlite-jdbc = { group = "org.xerial", name = "sqlite-jdbc", version.ref = "sqlite-jdbc" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
