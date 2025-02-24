@@ -13,7 +13,7 @@ selectAll:
 SELECT * FROM habitEntry;
 
 selectById:
-SELECT 1 FROM habítEntry WHERE id_mostSigBits = ? AND id_leastSigBits = ?;
+SELECT * FROM habitEntry WHERE id_mostSigBits = ? AND id_leastSigBits = ? LIMIT 1;
 
 selectAllByHabitId:
 SELECT * FROM habitEntry WHERE habit_id_mostSigBits = ? AND habit_id_leastSigBits = ?;
