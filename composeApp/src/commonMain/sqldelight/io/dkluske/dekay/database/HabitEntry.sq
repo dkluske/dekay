@@ -1,0 +1,28 @@
+CREATE TABLE habitEntry(
+  id_mostSigBits INTEGER NOT NULL,
+  id_leastSigBits INTEGER NOT NULL,
+  habit_id_mostSigBits INTEGER NOT NULL,
+  habit_id_leastSigBits INTEGER NOT NULL,
+  check_date TEXT NOT NULL
+);
+
+CREATE UNIQUE INDEX habitEntry_id_idx ON habitEntry(id_mostSigBits, id_leastSigBits);
+CREATE INDEX habitEntry_habit_id_idx ON habitEntry(habit_id_mostSigBits, habit_id_leastSigBits);
+
+selectAll:
+SELECT * FROM habitEntry;
+
+selectById:
+SELECT * FROM habitEntry WHERE id_mostSigBits = ? AND id_leastSigBits = ? LIMIT 1;
+
+selectAllByHabitId:
+SELECT * FROM habitEntry WHERE habit_id_mostSigBits = ? AND habit_id_leastSigBits = ?;
+
+insert:
+INSERT INTO habitEntry(
+  id_mostSigBits,
+  id_leastSigBits,
+  habit_id_mostSigBits,
+  habit_id_leastSigBits,
+  check_date
+) VALUES ?;
