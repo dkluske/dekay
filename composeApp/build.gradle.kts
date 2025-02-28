@@ -33,11 +33,17 @@ kotlin {
     sourceSets {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.sqldelight.driver.jvm)
         }
         
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.sqldelight.driver.android)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.sqldelight.driver.ios)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
