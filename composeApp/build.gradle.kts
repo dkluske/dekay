@@ -33,6 +33,7 @@ kotlin {
     sourceSets {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.sqlite.jdbc)
             implementation(libs.sqldelight.driver.jvm)
         }
         
@@ -57,7 +58,6 @@ kotlin {
             /*implementation(libs.androidx.material3)*/ // TODO: compose 3 for ios available at 1.5.0
             implementation(libs.jetbrains.compose.material3)
             implementation(libs.ehsannarmani.composecharts)
-            implementation(libs.sqlite.jdbc)
         }
     }
 }
