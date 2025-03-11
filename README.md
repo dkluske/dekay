@@ -29,6 +29,8 @@ With `dekay` you will be able to track your:
 |-----------------------|----------------------------------------------------------------|
 | Kotlin                | The programming language.                                      |
 | Compose Multiplatform | A framework for kotlin multiplatform based on Jetpack Compose. |
+| SQLDelight            | A multiplatform framework for database handling.               |
+| Compose Charts        | A compose multiplatform framework for displaying nice graphs.  |
 
 ## Usage
 
