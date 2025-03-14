@@ -7,6 +7,7 @@ import kotlin.uuid.Uuid
 data class Ingredient(
     val id: Uuid,
     val name: String,
+    val mealId: Uuid,
     val calories: Int,
     val protein: Int,
     val carbohydrates: Int,

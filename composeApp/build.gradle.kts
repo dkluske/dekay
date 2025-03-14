@@ -58,6 +58,7 @@ kotlin {
             implementation(libs.jetbrains.compose.material3)
             implementation(libs.ehsannarmani.composecharts)
             implementation(libs.sqlite.jdbc)
+            implementation(libs.kotlinx.datetime)
         }
     }
 }
