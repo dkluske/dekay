@@ -1,0 +1,14 @@
+CREATE TABLE settings (
+    identifier INTEGER PRIMARY KEY NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    nick_name TEXT,
+    daily_step_target INTEGER,
+    gender TEXT NOT NULL,
+    age INTEGER,
+    height INTEGER
+);
+
+getSettings:
+SELECT * FROM settings LIMIT 1;
+
