@@ -40,3 +40,22 @@ INSERT INTO ingredient(
     carbohydrates,
     fats
 ) VALUES ?;
+
+deleteById:
+DELETE FROM ingredient WHERE id_mostSigBits = ? AND id_leastSigBits = ?;
+
+deleteByMealId:
+DELETE FROM ingredient WHERE meal_id_mostSigBits = ? AND meal_id_leastSigBits = ?;
+
+update:
+INSERT OR REPLACE INTO ingredient(
+    id_leastSigBits,
+    id_mostSigBits,
+    meal_id_leastSigBits,
+    meal_id_mostSigBits,
+    name,
+    calories,
+    protein,
+    carbohydrates,
+    fats
+) VALUES ?;
