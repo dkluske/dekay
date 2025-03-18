@@ -42,7 +42,7 @@ fun App(
     MaterialTheme(
         colors = CUSTOM_THEME_DARK
     ) {
-        val database = remember { Database(sqlDriver) }
+        val database = Database(sqlDriver)
         val settings = database.settingsQueries.getSettings().executeAsOneOrNull()
         val init = settings == null
         val initialView = mutableStateOf(
@@ -52,7 +52,12 @@ fun App(
                 View.Home()
             }
         )
-        val ui = remember { UI(state = initialView) }
+        val ui = remember {
+            UI(
+                state = initialView,
+                database = mutableStateOf(database)
+            )
+        }
         Scaffold(
             bottomBar = {
                 BottomAppBar(
