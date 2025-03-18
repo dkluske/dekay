@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import app.cash.sqldelight.db.SqlDriver
+import io.dkluske.dekay.database.Database
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.views.UI
@@ -41,7 +42,9 @@ fun App(
     MaterialTheme(
         colors = CUSTOM_THEME_DARK
     ) {
-        val init = false // TODO: check if config
+        val database = remember { Database(sqlDriver) }
+        val settings = database.settingsQueries.getSettings().executeAsOneOrNull()
+        val init = settings == null
         val initialView = mutableStateOf(
             if (init) {
                 View.Init()
