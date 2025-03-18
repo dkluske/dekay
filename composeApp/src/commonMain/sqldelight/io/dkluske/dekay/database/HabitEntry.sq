@@ -26,3 +26,9 @@ INSERT INTO habitEntry(
   habit_id_leastSigBits,
   check_date
 ) VALUES ?;
+
+deleteById:
+DELETE FROM habitEntry WHERE id_mostSigBits = ? AND id_leastSigBits = ?;
+
+deleteByHabitId:
+DELETE FROM habitEntry WHERE habit_id_mostSigBits = ? AND habit_id_leastSigBits = ?;
