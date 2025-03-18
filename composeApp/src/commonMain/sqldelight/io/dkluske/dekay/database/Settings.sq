@@ -35,3 +35,6 @@ INSERT OR REPLACE INTO settings(
     age,
     height
 ) VALUES ?;
+
+deleteSettings:
+DELETE FROM settings;
