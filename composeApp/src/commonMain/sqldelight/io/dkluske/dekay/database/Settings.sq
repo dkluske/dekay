@@ -12,3 +12,26 @@ CREATE TABLE settings (
 getSettings:
 SELECT * FROM settings LIMIT 1;
 
+insert:
+INSERT INTO settings(
+    identifier,
+    first_name,
+    last_name,
+    nick_name,
+    daily_step_target,
+    gender,
+    age,
+    height
+) VALUES ?;
+
+update:
+INSERT OR REPLACE INTO settings(
+    identifier,
+    first_name,
+    last_name,
+    nick_name,
+    daily_step_target,
+    gender,
+    age,
+    height
+) VALUES ?;
