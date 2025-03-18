@@ -25,3 +25,13 @@ INSERT INTO meal(
     id_mostSigBits,
     name
 ) VALUES ?;
+
+deleteById:
+DELETE FROM meal WHERE id_mostSigBits = ? AND id_leastSigBits = ?;
+
+update:
+INSERT OR REPLACE INTO meal(
+    id_leastSigBits,
+    id_mostSigBits,
+    name
+) VALUES ?;
