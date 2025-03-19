@@ -5,7 +5,7 @@ CREATE TABLE settings (
     nick_name TEXT,
     daily_step_target INTEGER,
     gender TEXT NOT NULL,
-    age INTEGER,
+    date_of_birth TEXT,
     height INTEGER
 );
 
