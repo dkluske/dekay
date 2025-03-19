@@ -20,7 +20,7 @@ INSERT INTO settings(
     nick_name,
     daily_step_target,
     gender,
-    age,
+    date_of_birth,
     height
 ) VALUES ?;
 
@@ -32,7 +32,7 @@ INSERT OR REPLACE INTO settings(
     nick_name,
     daily_step_target,
     gender,
-    age,
+    date_of_birth,
     height
 ) VALUES ?;
 
