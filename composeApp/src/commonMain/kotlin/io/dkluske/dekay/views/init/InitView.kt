@@ -126,11 +126,22 @@ fun Steppable.InitViewFinish(
 fun Steppable.InitWrapperStepView(
     block: @Composable () -> Unit
 ) {
-    
+    InitViewBase() {
+        
+    }
 }
 
 @Composable
 fun Steppable.InitDataStepView(
+    block: @Composable () -> Unit
+) {
+    InitViewBase() {
+        
+    }
+}
+
+@Composable
+fun Steppable.InitViewBase(
     block: @Composable () -> Unit
 ) {
     
