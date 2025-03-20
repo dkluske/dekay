@@ -59,6 +59,7 @@ kotlin {
             implementation(libs.ehsannarmani.composecharts)
             implementation(libs.sqlite.jdbc)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.sqldelight.primitive.adapters)
         }
     }
 }
