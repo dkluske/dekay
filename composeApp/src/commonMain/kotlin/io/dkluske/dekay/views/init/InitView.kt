@@ -13,7 +13,7 @@ fun InitView(
     ui: UI
 ) {
     val index = remember { mutableStateOf(0) }
-    val stepMax = 3
+    val stepMax = 4
     val steppable = object : Steppable {
         @Composable
         override fun previous() {
@@ -43,24 +43,37 @@ fun InitView(
 
     with(steppable) {
         when (index.value) {
-            0 -> InitViewStep1(
+            0 -> InitViewStart(
+                
+            )
+            
+            1 -> InitViewStep1(
                 settingsBuilder = settingsBuilder,
                 step1Builder = step1BuilderFun
             )
 
-            1 -> InitViewStep2(
+            2 -> InitViewStep2(
                 settingsBuilder = settingsBuilder,
                 step2Builder = step2BuilderFun
             )
 
-            2 -> InitViewStep3(
+            3 -> InitViewStep3(
                 settingsBuilder = settingsBuilder,
                 step3Builder = step3BuilderFun
             )
 
-            3 -> InitViewFinish()
+            4 -> InitViewFinish(
+                
+            )
         }
     }
+}
+
+@Composable
+fun Steppable.InitViewStart(
+    
+) {
+    
 }
 
 @Composable
