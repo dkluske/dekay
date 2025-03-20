@@ -13,7 +13,7 @@ fun InitView(
     ui: UI
 ) {
     val index = remember { mutableStateOf(0) }
-    val stepMax = 4
+    val stepMax = 5
     val steppable = object : Steppable {
         @Composable
         override fun previous() {
@@ -65,6 +65,10 @@ fun InitView(
             4 -> InitViewFinish(
                 
             )
+
+            5 -> {
+                ui.state.value = View.Home()
+            }
         }
     }
 }
@@ -105,6 +109,20 @@ fun Steppable.InitViewFinish(
 
 ) {
 
+}
+
+@Composable
+fun Steppable.InitWrapperStepView(
+    block: @Composable () -> Unit
+) {
+    
+}
+
+@Composable
+fun Steppable.InitDataStepView(
+    block: @Composable () -> Unit
+) {
+    
 }
 
 interface Steppable {
