@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.store.model.SettingsBuilder
 import io.dkluske.dekay.views.UI
+import io.dkluske.dekay.views.View
 import kotlinx.datetime.LocalDate
 
 @Composable
