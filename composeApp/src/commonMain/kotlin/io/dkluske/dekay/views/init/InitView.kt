@@ -78,7 +78,9 @@ fun InitView(
 fun Steppable.InitViewStart(
     
 ) {
-    
+    InitWrapperStepView() {
+        
+    }
 }
 
 @Composable
@@ -86,7 +88,9 @@ fun Steppable.InitViewStep1(
     settingsBuilder: SettingsBuilder,
     step1Builder: SettingsBuilder.(String, String, String?) -> Unit
 ) {
-
+    InitDataStepView() {
+        
+    }
 }
 
 @Composable
@@ -94,7 +98,9 @@ fun Steppable.InitViewStep2(
     settingsBuilder: SettingsBuilder,
     step2Builder: SettingsBuilder.(LocalDate, Int, Settings.Gender) -> Unit
 ) {
-
+    InitDataStepView() {
+        
+    }
 }
 
 @Composable
@@ -102,14 +108,18 @@ fun Steppable.InitViewStep3(
     settingsBuilder: SettingsBuilder,
     step3Builder: SettingsBuilder.(Int) -> Unit
 ) {
-
+    InitDataStepView() {
+        
+    }
 }
 
 @Composable
 fun Steppable.InitViewFinish(
 
 ) {
-
+    InitWrapperStepView() {
+        
+    }
 }
 
 @Composable
