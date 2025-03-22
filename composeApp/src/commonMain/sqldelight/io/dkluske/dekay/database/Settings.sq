@@ -1,0 +1,40 @@
+CREATE TABLE settings (
+    identifier INTEGER PRIMARY KEY NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    nick_name TEXT,
+    daily_step_target INTEGER,
+    gender TEXT NOT NULL,
+    date_of_birth TEXT,
+    height INTEGER
+);
+
+getSettings:
+SELECT * FROM settings LIMIT 1;
+
+insert:
+INSERT INTO settings(
+    identifier,
+    first_name,
+    last_name,
+    nick_name,
+    daily_step_target,
+    gender,
+    date_of_birth,
+    height
+) VALUES ?;
+
+update:
+INSERT OR REPLACE INTO settings(
+    identifier,
+    first_name,
+    last_name,
+    nick_name,
+    daily_step_target,
+    gender,
+    date_of_birth,
+    height
+) VALUES ?;
+
+deleteSettings:
+DELETE FROM settings;
