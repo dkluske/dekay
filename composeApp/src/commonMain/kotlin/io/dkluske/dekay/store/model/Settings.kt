@@ -1,6 +1,7 @@
 package io.dkluske.dekay.store.model
 
 import kotlinx.datetime.LocalDate
+import io.dkluske.dekay.database.Settings as DBSettings
 
 data class Settings(
     val index: Int,
@@ -11,11 +12,24 @@ data class Settings(
     val gender: Gender,
     val dateOfBirth: LocalDate?,
     val height: Int?
-) {
+) : DBModel<DBSettings> {
     enum class Gender {
         MALE,
         FEMALE,
         NOT_DEFINED;
+    }
+
+    override fun toDatabaseModel(): DBSettings {
+        return DBSettings(
+            identifier = index.toLong(),
+            first_name = firstName,
+            last_name = lastName,
+            nick_name = nickName,
+            daily_step_target = dailyStepTarget?.toLong(),
+            gender = gender.name,
+            date_of_birth = dateOfBirth?.toString(),
+            height = height?.toLong()
+        )
     }
 }
 
