@@ -18,6 +18,9 @@ SELECT * FROM habitEntry WHERE id_mostSigBits = ? AND id_leastSigBits = ? LIMIT 
 selectAllByHabitId:
 SELECT * FROM habitEntry WHERE habit_id_mostSigBits = ? AND habit_id_leastSigBits = ?;
 
+selectLastXEntriesByHabitId:
+SELECT * FROM habitEntry WHERE habit_id_mostSigBits = ? AND habit_id_leastSigBits = ? LIMIT ?;
+
 insert:
 INSERT INTO habitEntry(
   id_mostSigBits,
