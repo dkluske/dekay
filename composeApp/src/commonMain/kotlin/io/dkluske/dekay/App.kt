@@ -32,6 +32,7 @@ import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
 import io.dkluske.dekay.views.habits.HabitsView
 import io.dkluske.dekay.views.home.HomeView
+import io.dkluske.dekay.views.init.InitView
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -112,7 +113,7 @@ fun App(
                             is View.Charts -> TODO()
                             is View.Habits -> HabitsView(ui = ui)
                             is View.Settings -> TODO()
-                            is View.Init -> TODO()
+                            is View.Init -> InitView(ui = ui)
                         }
                     }
                 }

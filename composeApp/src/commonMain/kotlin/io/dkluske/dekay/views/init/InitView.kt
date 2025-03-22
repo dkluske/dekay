@@ -2,7 +2,9 @@ package io.dkluske.dekay.views.init
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,6 +20,7 @@ import androidx.compose.ui.graphics.TileMode
 import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.store.model.SettingsBuilder
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
+import io.dkluske.dekay.util.components.ActionButton
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
 import kotlinx.datetime.LocalDate
@@ -32,12 +35,11 @@ fun InitView(
     val index = remember { mutableStateOf(0) }
     val stepMax = 5
     val steppable = object : Steppable {
-        @Composable
+
         override fun previous() {
             index.value = index.value.minus(1).coerceAtLeast(0)
         }
 
-        @Composable
         override fun next() {
             index.value = index.value.plus(1).coerceAtMost(stepMax)
         }
@@ -92,7 +94,8 @@ fun InitView(
 fun Steppable.InitViewStart() {
     InitWrapperStepView(
         title = null,
-        text = "Welcome to dekay!"
+        text = "Welcome to dekay!",
+        nextButtonText = "Start"
     ) {
         
     }
@@ -103,9 +106,21 @@ fun Steppable.InitViewStep1(
     settingsBuilder: SettingsBuilder,
     step1Builder: SettingsBuilder.(String, String, String?) -> Unit
 ) {
+    val firstName = mutableStateOf(null)
+    val lastName = mutableStateOf(null)
+    val nickName = mutableStateOf(null)
+    val onNext: () -> Unit = {
+        if (firstName.value == null || lastName.value == null) {
+            // TODO: show error
+        } else {
+            settingsBuilder.step1Builder(firstName.value!!, lastName.value!!, nickName.value)
+        }
+    }
+    
     InitDataStepView(
         title = "Step 1: Personal Information",
-        text = "Please enter your personal information to get started."
+        text = "Please enter your personal information to get started.",
+        onNext = onNext
     ) {
         
     }
@@ -116,9 +131,17 @@ fun Steppable.InitViewStep2(
     settingsBuilder: SettingsBuilder,
     step2Builder: SettingsBuilder.(LocalDate, Int, Settings.Gender) -> Unit
 ) {
+    val dateOfBirth = mutableStateOf(LocalDate(2000, 1, 1))
+    val height = mutableStateOf(180)
+    val gender = mutableStateOf(Settings.Gender.NOT_DEFINED)
+    val onNext: () -> Unit = {
+        settingsBuilder.step2Builder(dateOfBirth.value, height.value, gender.value)
+    }
+    
     InitDataStepView(
         title = "Step 2: Health Information",
-        text = "Please enter your health information to get started."
+        text = "Please enter your health information to get started.",
+        onNext = onNext
     ) {
         
     }
@@ -129,9 +152,15 @@ fun Steppable.InitViewStep3(
     settingsBuilder: SettingsBuilder,
     step3Builder: SettingsBuilder.(Int) -> Unit
 ) {
+    val stepGoal = mutableStateOf(10000)
+    val onNext: () -> Unit = {
+        settingsBuilder.step3Builder(stepGoal.value)
+    }
+    
     InitDataStepView(
         title = "Step 3: Daily Step Goal",
-        text = "Please enter your daily step goal to get started."
+        text = "Please enter your daily step goal to get started.",
+        onNext = onNext
     ) {
         
     }
@@ -141,7 +170,8 @@ fun Steppable.InitViewStep3(
 fun Steppable.InitViewFinish() {
     InitWrapperStepView(
         title = "Finished!",
-        text = "Congratulations! You have finished the onboarding process. You are now ready to begin your journey with dekay."
+        text = "Congratulations! You have finished the onboarding process. You are now ready to begin your journey with dekay.",
+        nextButtonText = "Start your journey!"
     ) {
         
     }
@@ -151,10 +181,33 @@ fun Steppable.InitViewFinish() {
 fun Steppable.InitWrapperStepView(
     title: String?,
     text: String,
+    nextButtonText: String,
     block: @Composable Steppable.() -> Unit
 ) {
     InitViewBase {
-        
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            if (title != null) {
+                Text(title)
+            }
+            Text(text)
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            block()
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            ActionButton(
+                text = nextButtonText,
+                onClick = {
+                    next()
+                }
+            )
+        }
     }
 }
 
@@ -162,10 +215,38 @@ fun Steppable.InitWrapperStepView(
 fun Steppable.InitDataStepView(
     title: String,
     text: String,
+    onNext: () -> Unit,
     block: @Composable Steppable.() -> Unit
 ) {
     InitViewBase {
-        
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(title)
+            Text(text)
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            block()
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            ActionButton(
+                text = "Previous",
+                onClick = {
+                    previous()
+                }
+            )
+            ActionButton(
+                text = "Next",
+                onClick = {
+                    onNext()
+                    next()
+                }
+            )
+        }
     }
 }
 
@@ -201,9 +282,7 @@ fun Steppable.InitViewBase(
 }
 
 interface Steppable {
-    @Composable
     fun previous()
 
-    @Composable
     fun next()
 }
