@@ -151,7 +151,7 @@ fun Steppable.InitViewFinish() {
 fun Steppable.InitWrapperStepView(
     title: String?,
     text: String,
-    block: @Composable () -> Unit
+    block: @Composable Steppable.() -> Unit
 ) {
     InitViewBase {
         
@@ -162,7 +162,7 @@ fun Steppable.InitWrapperStepView(
 fun Steppable.InitDataStepView(
     title: String,
     text: String,
-    block: @Composable () -> Unit
+    block: @Composable Steppable.() -> Unit
 ) {
     InitViewBase {
         
@@ -171,7 +171,7 @@ fun Steppable.InitDataStepView(
 
 @Composable
 fun Steppable.InitViewBase(
-    block: @Composable () -> Unit
+    block: @Composable Steppable.() -> Unit
 ) {
     Column(
         modifier = Modifier
