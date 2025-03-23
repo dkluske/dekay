@@ -9,6 +9,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
@@ -30,6 +31,7 @@ fun AddButton(
 
 @Composable
 fun ActionButton(
+    modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
 ) {
@@ -39,7 +41,8 @@ fun ActionButton(
             containerColor = Color.Blue,
             contentColor = Color.White,
             disabledContentColor = Color.DarkGray,
-        )
+        ),
+        modifier = modifier
     ) {
         Text(text)
     }
