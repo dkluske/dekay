@@ -109,7 +109,8 @@ fun Steppable.InitViewStart() {
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .fillMaxHeight(0.5f),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -119,7 +120,8 @@ fun Steppable.InitViewStart() {
                 )
             }
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .fillMaxHeight(0.4f),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -238,8 +240,9 @@ fun Steppable.InitWrapperStepView(
         }
         Row(
             modifier = Modifier.fillMaxWidth()
-                .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically,
+                .padding(8.dp)
+                .fillMaxHeight(),
+            verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.Center
         ) {
             ActionButton(
@@ -265,6 +268,11 @@ fun Steppable.InitDataStepView(
                 .padding(8.dp)
         ) {
             StepTitle(title)
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .padding(8.dp)
+        ) {
             StepText(text)
         }
         Row(
@@ -275,23 +283,34 @@ fun Steppable.InitDataStepView(
         }
         Row(
             modifier = Modifier.fillMaxWidth()
-                .padding(8.dp),
+                .padding(8.dp)
+                .fillMaxHeight(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.Bottom
         ) {
-            ActionButton(
-                text = "Previous",
-                onClick = {
-                    previous()
-                }
-            )
-            ActionButton(
-                text = "Next",
-                onClick = {
-                    onNext()
-                    next()
-                }
-            )
+            Column(
+                modifier = Modifier.weight(1f)
+                    .padding(end = 4.dp)
+            ) {
+                ActionButton(
+                    text = "Back",
+                    onClick = {
+                        previous()
+                    }
+                )
+            }
+            Column(
+                modifier = Modifier.weight(1f)
+                    .padding(start = 4.dp)
+            ) {
+                ActionButton(
+                    text = "Next",
+                    onClick = {
+                        onNext()
+                        next()
+                    }
+                )
+            }
         }
     }
 }
