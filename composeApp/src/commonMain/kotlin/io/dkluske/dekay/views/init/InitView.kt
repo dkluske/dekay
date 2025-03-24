@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -20,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
+import androidx.compose.ui.unit.dp
 import dekay.composeapp.generated.resources.Res
 import dekay.composeapp.generated.resources.dekay_pill
 import io.dkluske.dekay.store.model.Settings
@@ -219,6 +221,7 @@ fun Steppable.InitWrapperStepView(
     InitViewBase {
         Row(
             modifier = Modifier.fillMaxWidth()
+                .padding(8.dp)
         ) {
             title?.let {
                 Text(it)
@@ -229,11 +232,13 @@ fun Steppable.InitWrapperStepView(
         }
         Row(
             modifier = Modifier.fillMaxWidth()
+                .padding(8.dp)
         ) {
             block()
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
@@ -257,17 +262,20 @@ fun Steppable.InitDataStepView(
     InitViewBase {
         Row(
             modifier = Modifier.fillMaxWidth()
+                .padding(8.dp)
         ) {
             Text(title)
             Text(text)
         }
         Row(
             modifier = Modifier.fillMaxWidth()
+                .padding(8.dp)
         ) {
             block()
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
