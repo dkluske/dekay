@@ -91,6 +91,10 @@ android {
     }
 }
 
+compose.resources {
+    generateResClass = auto
+}
+
 dependencies {
     debugImplementation(compose.uiTooling)
 }

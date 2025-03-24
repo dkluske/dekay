@@ -1,5 +1,6 @@
 package io.dkluske.dekay.views.init
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
+import dekay.composeapp.generated.resources.Res
+import dekay.composeapp.generated.resources.dekay_pill
 import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.store.model.SettingsBuilder
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
@@ -26,6 +29,7 @@ import io.dkluske.dekay.util.components.ActionButton
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
 import kotlinx.datetime.LocalDate
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * TODO: i18N
@@ -96,10 +100,36 @@ fun InitView(
 fun Steppable.InitViewStart() {
     InitWrapperStepView(
         title = null,
-        text = "Welcome to dekay!",
+        text = null,
         nextButtonText = "Start"
     ) {
-        
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(resource = Res.drawable.dekay_pill),
+                    contentDescription = "dekay logo"
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = """
+                        In order to use dekay properly, we need some information from you in a few simple steps.
+                        
+                        No worries wo won't sell any of them.
+                    """.trimIndent()
+                )
+            }
+        }
     }
 }
 
@@ -182,7 +212,7 @@ fun Steppable.InitViewFinish() {
 @Composable
 fun Steppable.InitWrapperStepView(
     title: String?,
-    text: String,
+    text: String?,
     nextButtonText: String,
     block: @Composable Steppable.() -> Unit
 ) {
@@ -190,10 +220,12 @@ fun Steppable.InitWrapperStepView(
         Row(
             modifier = Modifier.fillMaxWidth()
         ) {
-            if (title != null) {
-                Text(title)
+            title?.let {
+                Text(it)
             }
-            Text(text)
+            text?.let {
+                Text(it)
+            }
         }
         Row(
             modifier = Modifier.fillMaxWidth()

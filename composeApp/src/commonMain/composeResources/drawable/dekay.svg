@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg width="1920"
+    height="1080"
+    viewBox="0 0 1920 1080"
+    version="1.1"
+    id="svg5"
+    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+    sodipodi:docname="dekay.svg"
+    inkscape:export-filename="/home/dok/Dokumente/dekay_pill.png"
+    inkscape:export-xdpi="96.099998"
+    inkscape:export-ydpi="96.099998"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns="http://www.w3.org/2000/svg">
+    <sodipodi:namedview
+        id="namedview7"
+        pagecolor="#505050"
+        bordercolor="#eeeeee"
+        borderopacity="1"
+        inkscape:pageshadow="0"
+        inkscape:pageopacity="0"
+        inkscape:pagecheckerboard="0"
+        inkscape:document-units="px"
+        showgrid="false"
+        inkscape:snap-midpoints="true"
+        inkscape:snap-object-midpoints="true"
+        inkscape:snap-center="true"
+        inkscape:zoom="0.70710678"
+        inkscape:cx="1005.5058"
+        inkscape:cy="605.2834"
+        inkscape:window-width="2560"
+        inkscape:window-height="1395"
+        inkscape:window-x="2560"
+        inkscape:window-y="21"
+        inkscape:window-maximized="1"
+        inkscape:current-layer="layer2">
+        <sodipodi:guide
+            position="0,1080"
+            orientation="0,1920"
+            id="guide100407" />
+        <sodipodi:guide
+            position="1920,1080"
+            orientation="1080,0"
+            id="guide100409" />
+        <sodipodi:guide
+            position="1920,540"
+            orientation="0,1"
+            id="guide100411"
+            inkscape:label=""
+            inkscape:locked="false"
+            inkscape:color="rgb(0,0,255)" />
+        <sodipodi:guide
+            position="960,1299.7559"
+            orientation="-1,0"
+            id="guide100413"
+            inkscape:label=""
+            inkscape:locked="false"
+            inkscape:color="rgb(0,0,255)" />
+        <sodipodi:guide
+            position="0,1080"
+            orientation="0,1920"
+            id="guide100415" />
+        <sodipodi:guide
+            position="1920,1080"
+            orientation="1080,0"
+            id="guide100417" />
+        <sodipodi:guide
+            position="1920,0"
+            orientation="0,-1920"
+            id="guide100419" />
+        <sodipodi:guide
+            position="0,0"
+            orientation="-1080,0"
+            id="guide100421" />
+    </sodipodi:namedview>
+    <defs id="defs2">
+        <rect
+            x="0.094461426"
+            y="0.82831603"
+            width="1922.9093"
+            height="1082.8182"
+            id="rect54571" />
+    </defs>
+    <g
+        inkscape:groupmode="layer"
+        id="layer3"
+        inkscape:label="Ebene 3"
+        style="display:inline">
+        <rect
+            style="fill:#1f242a;stroke-width:0.997951"
+            id="rect883"
+            width="1920.014"
+            height="1080.016"
+            x="3.7844727e-14"
+            y="-9.5368158e-14"
+            inkscape:export-filename="/home/dok/Dokumente/dekay.png"
+            inkscape:export-xdpi="96.099998"
+            inkscape:export-ydpi="96.099998" />
+    </g>
+    <g
+        inkscape:groupmode="layer"
+        id="layer2"
+        inkscape:label="Ebene 2"
+        style="display:none">
+        <rect
+            style="display:inline;fill:#1f1f1f;fill-opacity:1"
+            id="rect856"
+            width="1025.1367"
+            height="260.08691"
+            x="447.43161"
+            y="409.95654"
+            ry="85.253906" />
+    </g>
+    <g
+        inkscape:label="Ebene 1"
+        inkscape:groupmode="layer"
+        id="layer1"
+        style="display:inline">
+        <text
+            xml:space="preserve"
+            id="text54569"
+            style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect54571);fill:#000000;fill-opacity:1;stroke:none"
+            x="356.55936"
+            y="0"
+            transform="translate(-1.5490112,434.17187)"
+            inkscape:export-filename="/home/dok/Dokumente/dekay.png"
+            inkscape:export-xdpi="96.099998"
+            inkscape:export-ydpi="96.099998"><tspan
+         x="495.84982"
+         y="185.82812"
+         id="tspan1375"><tspan
+           style="font-size:200px;font-family:'Dune Rise';-inkscape-font-specification:'Dune Rise, Normal';text-align:center;text-anchor:middle;fill:#93959b"
+           id="tspan1373">dekay</tspan></tspan></text>
+    </g>
+</svg>
