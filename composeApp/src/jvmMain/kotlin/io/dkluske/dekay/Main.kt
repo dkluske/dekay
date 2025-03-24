@@ -9,8 +9,8 @@ import io.dkluske.dekay.util.Constants
 fun main() = singleWindowApplication(
     title = Constants.APP_NAME,
     state = WindowState(
-        width = 720.dp,
-        height = 1260.dp
+        width = 360.dp,
+        height = 630.dp
     )
 ) {
     val sqlDriver = DriverFactory().createDriver(Constants.DB_NAME)
