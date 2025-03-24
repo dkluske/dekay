@@ -123,7 +123,7 @@ fun Steppable.InitViewStart() {
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
+                StepText(
                     text = """
                         In order to use dekay properly, we need some information from you in a few simple steps.
                         
@@ -224,10 +224,10 @@ fun Steppable.InitWrapperStepView(
                 .padding(8.dp)
         ) {
             title?.let {
-                Text(it)
+                StepTitle(it)
             }
             text?.let {
-                Text(it)
+                StepText(it)
             }
         }
         Row(
@@ -264,8 +264,8 @@ fun Steppable.InitDataStepView(
             modifier = Modifier.fillMaxWidth()
                 .padding(8.dp)
         ) {
-            Text(title)
-            Text(text)
+            StepTitle(title)
+            StepText(text)
         }
         Row(
             modifier = Modifier.fillMaxWidth()
@@ -326,6 +326,20 @@ fun Steppable.InitViewBase(
     ) {
         block()
     }
+}
+
+@Composable
+private fun StepText(text: String) {
+    Text(
+        text = text
+    )
+}
+
+@Composable
+private fun StepTitle(text: String) {
+    Text(
+        text = text
+    )
 }
 
 interface Steppable {
