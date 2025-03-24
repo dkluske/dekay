@@ -61,41 +61,43 @@ fun App(
         }
         Scaffold(
             bottomBar = {
-                BottomAppBar(
-                    containerColor = Color.Transparent
-                ) {
-                    Card {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceAround
-                        ) {
-                            IconButton(
-                                onClick = {
-                                    ui.state.value = View.Home()
-                                }
+                if (ui.state.value !is View.Init) {
+                    BottomAppBar(
+                        containerColor = Color.Transparent
+                    ) {
+                        Card {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceAround
                             ) {
-                                Icon(Icons.Default.Home, "home")
-                            }
-                            IconButton(
-                                onClick = {
-                                    ui.state.value = View.Habits()
+                                IconButton(
+                                    onClick = {
+                                        ui.state.value = View.Home()
+                                    }
+                                ) {
+                                    Icon(Icons.Default.Home, "home")
                                 }
-                            ) {
-                                Icon(Icons.Default.Add, "habits")
-                            }
-                            IconButton(
-                                onClick = {
-                                    ui.state.value = View.Charts()
+                                IconButton(
+                                    onClick = {
+                                        ui.state.value = View.Habits()
+                                    }
+                                ) {
+                                    Icon(Icons.Default.Add, "habits")
                                 }
-                            ) {
-                                Icon(Icons.Default.Done, "charts")
-                            }
-                            IconButton(
-                                onClick = {
-                                    ui.state.value = View.Settings()
+                                IconButton(
+                                    onClick = {
+                                        ui.state.value = View.Charts()
+                                    }
+                                ) {
+                                    Icon(Icons.Default.Done, "charts")
                                 }
-                            ) {
-                                Icon(Icons.Default.Settings, "settings")
+                                IconButton(
+                                    onClick = {
+                                        ui.state.value = View.Settings()
+                                    }
+                                ) {
+                                    Icon(Icons.Default.Settings, "settings")
+                                }
                             }
                         }
                     }
