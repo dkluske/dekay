@@ -52,6 +52,22 @@ After you obtained the file, you will have to proceed with the individual steps,
 - Download the `.apk` file on your android device.
 - Install the application by executing the `.apk` file on the device. 
 
+### IDE
+
+- Open this project in your favourable IDE like Android Studio or Intellij IDEA.
+- Run the JVM implementation for testing by executing the following command as a gradle run
+  configuration:
+
+```shell
+  jvmRun -DmainClass=io.dkluske.dekay.MainKt -q
+```
+
+- Or directly in console:
+
+```shell
+  ./gradlew jvmRun -DmainClass=io.dkluske.dekay.MainKt -q
+```
+
 ## Authors
 
 - Dominik Kluske - [@dkluske](https://github.com/dkluske) - 2025
