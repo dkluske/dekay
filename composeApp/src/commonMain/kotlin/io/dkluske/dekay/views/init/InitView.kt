@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
-import androidx.compose.ui.graphics.TileMode
 import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.store.model.SettingsBuilder
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
@@ -272,14 +271,14 @@ fun Steppable.InitViewBase(
                         val maxSize = maxOf(size.width, size.height)
                         return RadialGradientShader(
                             colors = listOf(
-                                Color.White,
-                                Color.Gray,
-                                Color.LightGray,
-                                Color.Transparent
+                                Color(217f, 217f, 217f, 0.43f),
+                                Color(166f, 166f, 166f, 0.26f),
+                                Color(140f, 140f, 140f, 0.15f),
+                                Color(115f, 115f, 115f, 0f)
                             ),
-                            center = size.center.minus(Offset(x = 0f, y = 20f)),
-                            radius = maxSize * 1.5f / 2f,
-                            tileMode = TileMode.Clamp
+                            center = size.center.minus(Offset(x = 0f, y = size.height / 2)),
+                            radius = maxSize / 1.2f,
+                            colorStops = listOf(0.0f, 0.5f, 0.75f, 1f)
                         )
                     }
                 }
