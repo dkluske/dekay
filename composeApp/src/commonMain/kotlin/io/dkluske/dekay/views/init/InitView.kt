@@ -21,7 +21,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import dekay.composeapp.generated.resources.Res
 import dekay.composeapp.generated.resources.dekay_pill
 import io.dkluske.dekay.store.model.Settings
@@ -350,14 +353,19 @@ fun Steppable.InitViewBase(
 @Composable
 private fun StepText(text: String) {
     Text(
-        text = text
+        text = text,
+        fontSize = 16.sp,
+        color = CUSTOM_THEME_DARK.onPrimary
     )
 }
 
 @Composable
 private fun StepTitle(text: String) {
     Text(
-        text = text
+        text = text,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold,
+        color = Color(200f, 200f, 200f)
     )
 }
 
