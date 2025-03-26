@@ -148,11 +148,13 @@ fun Steppable.InitViewStep1(
     val firstName = remember { mutableStateOf<String?>(null) }
     val lastName = remember { mutableStateOf<String?>(null) }
     val nickName = remember { mutableStateOf<String?>(null) }
-    val onNext: () -> Unit = {
+    val onNext: () -> Boolean = {
         if (firstName.value == null || lastName.value == null) {
             // TODO: show error
+            return false
         } else {
             settingsBuilder.step1Builder(firstName.value!!, lastName.value!!, nickName.value)
+            return true
         }
     }
     
@@ -208,8 +210,9 @@ fun Steppable.InitViewStep2(
     val dateOfBirth = mutableStateOf(LocalDate(2000, 1, 1))
     val height = mutableStateOf(180)
     val gender = mutableStateOf(Settings.Gender.NOT_DEFINED)
-    val onNext: () -> Unit = {
+    val onNext: () -> Boolean = {
         settingsBuilder.step2Builder(dateOfBirth.value, height.value, gender.value)
+        return true
     }
     
     InitDataStepView(
@@ -227,8 +230,9 @@ fun Steppable.InitViewStep3(
     step3Builder: SettingsBuilder.(Int) -> Unit
 ) {
     val stepGoal = mutableStateOf(10000)
-    val onNext: () -> Unit = {
+    val onNext: () -> Boolean = {
         settingsBuilder.step3Builder(stepGoal.value)
+        return true
     }
     
     InitDataStepView(
@@ -297,7 +301,7 @@ fun Steppable.InitWrapperStepView(
 fun Steppable.InitDataStepView(
     title: String,
     text: String,
-    onNext: () -> Unit,
+    onNext: () -> Boolean,
     block: @Composable Steppable.() -> Unit
 ) {
     InitViewBase {
@@ -344,8 +348,9 @@ fun Steppable.InitDataStepView(
                 ActionButton(
                     text = "Next",
                     onClick = {
-                        onNext()
-                        next()
+                        if (onNext()) {
+                             next()   
+                        }
                     }
                 )
             }
