@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,7 +22,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -145,9 +145,9 @@ fun Steppable.InitViewStep1(
     settingsBuilder: SettingsBuilder,
     step1Builder: SettingsBuilder.(String, String, String?) -> Unit
 ) {
-    val firstName = mutableStateOf(null)
-    val lastName = mutableStateOf(null)
-    val nickName = mutableStateOf(null)
+    val firstName = remember { mutableStateOf<String?>(null) }
+    val lastName = remember { mutableStateOf<String?>(null) }
+    val nickName = remember { mutableStateOf<String?>(null) }
     val onNext: () -> Unit = {
         if (firstName.value == null || lastName.value == null) {
             // TODO: show error
@@ -161,7 +161,42 @@ fun Steppable.InitViewStep1(
         text = "Please enter your personal information to get started.",
         onNext = onNext
     ) {
-        
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                TextField(
+                    value = firstName.value ?: "",
+                    onValueChange = {
+                        firstName.value = it
+                    }
+                )
+            }
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                TextField(
+                    value = lastName.value ?: "",
+                    onValueChange = {
+                        lastName.value = it
+                    }
+                )
+            }
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            TextField(
+                value = nickName.value ?: "",
+                onValueChange = {
+                    nickName.value = it
+                }
+            )
+        }
     }
 }
 
