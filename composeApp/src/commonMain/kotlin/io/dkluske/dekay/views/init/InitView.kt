@@ -151,10 +151,10 @@ fun Steppable.InitViewStep1(
     val onNext: () -> Boolean = {
         if (firstName.value == null || lastName.value == null) {
             // TODO: show error
-            return false
+            false
         } else {
             settingsBuilder.step1Builder(firstName.value!!, lastName.value!!, nickName.value)
-            return true
+            true
         }
     }
     
@@ -212,7 +212,7 @@ fun Steppable.InitViewStep2(
     val gender = mutableStateOf(Settings.Gender.NOT_DEFINED)
     val onNext: () -> Boolean = {
         settingsBuilder.step2Builder(dateOfBirth.value, height.value, gender.value)
-        return true
+        true
     }
     
     InitDataStepView(
@@ -232,7 +232,7 @@ fun Steppable.InitViewStep3(
     val stepGoal = mutableStateOf(10000)
     val onNext: () -> Boolean = {
         settingsBuilder.step3Builder(stepGoal.value)
-        return true
+        true
     }
     
     InitDataStepView(
