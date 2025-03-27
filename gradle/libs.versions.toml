@@ -17,6 +17,7 @@ jetbrains-compose-material3 = "1.7.3"
 ehsannarmani-composecharts = "0.1.2"
 sqldelight = "2.1.0-SNAPSHOT"
 sqlite-jdbc = "3.49.1.0"
+localization-lyricist = "1.7.0"
 
 junit = "4.13.2"
 kotlin = "2.1.20"
@@ -44,6 +45,7 @@ sqldelight-driver-android = { group = "app.cash.sqldelight", name = "android-dri
 sqldelight-driver-ios = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
 sqldelight-driver-jvm = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight" }
 sqldelight-primitive-adapters = { group = "app.cash.sqldelight", name = "primitive-adapters", version.ref = "sqldelight" }
+localization-lyricist = { group = "cafe.adriel.lyricist", name = "lyricist", version.ref = "localization-lyricist" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
