@@ -185,10 +185,10 @@ fun Steppable.InitViewStep1(
                         modifier = Modifier.clip(RoundedCornerShape(8.dp)),
                         placeholder = { Text("Firstname") },
                         colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color(0x2F2F2F),
-                            unfocusedContainerColor = Color(0x2F2F2F),
-                            disabledContainerColor = Color(0x2F2F2F),
-                            errorContainerColor = Color(0x2F2F2F)
+                            focusedContainerColor = Color(46, 46, 46, 255),
+                            unfocusedContainerColor = Color(46, 46, 46, 255),
+                            disabledContainerColor = Color(46, 46, 46, 255),
+                            errorContainerColor = Color(46, 46, 46, 255)
                         ),
                         onValueChange = {
                             firstName.value = it
@@ -204,10 +204,10 @@ fun Steppable.InitViewStep1(
                         modifier = Modifier.clip(RoundedCornerShape(8.dp)),
                         placeholder = { Text("Lastname") },
                         colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color(0x2F2F2F),
-                            unfocusedContainerColor = Color(0x2F2F2F),
-                            disabledContainerColor = Color(0x2F2F2F),
-                            errorContainerColor = Color(0x2F2F2F)
+                            focusedContainerColor = Color(46, 46, 46, 255),
+                            unfocusedContainerColor = Color(46, 46, 46, 255),
+                            disabledContainerColor = Color(46, 46, 46, 255),
+                            errorContainerColor = Color(46, 46, 46, 255)
                         ),
                         onValueChange = {
                             lastName.value = it
@@ -225,10 +225,10 @@ fun Steppable.InitViewStep1(
                         .clip(RoundedCornerShape(8.dp)),
                     placeholder = { Text("Nickname") },
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color(0x2F2F2F),
-                        unfocusedContainerColor = Color(0x2F2F2F),
-                        disabledContainerColor = Color(0x2F2F2F),
-                        errorContainerColor = Color(0x2F2F2F)
+                        focusedContainerColor = Color(46, 46, 46, 255),
+                        unfocusedContainerColor = Color(46, 46, 46, 255),
+                        disabledContainerColor = Color(46, 46, 46, 255),
+                        errorContainerColor = Color(46, 46, 46, 255)
                     ),
                     onValueChange = {
                         nickName.value = it
