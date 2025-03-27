@@ -8,13 +8,16 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.center
@@ -163,41 +166,75 @@ fun Steppable.InitViewStep1(
         text = "Please enter your personal information to get started.",
         onNext = onNext
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                TextField(
-                    value = firstName.value ?: "",
-                    onValueChange = {
-                        firstName.value = it
-                    }
-                )
-            }
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                TextField(
-                    value = lastName.value ?: "",
-                    onValueChange = {
-                        lastName.value = it
-                    }
-                )
-            }
-        }
-        Row(
+        Column(
             modifier = Modifier.fillMaxWidth()
+                .padding(8.dp)
         ) {
-            TextField(
-                value = nickName.value ?: "",
-                onValueChange = {
-                    nickName.value = it
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                        .padding(end = 4.dp)
+                ) {
+                    TextField(
+                        value = firstName.value ?: "",
+                        modifier = Modifier.clip(RoundedCornerShape(8.dp)),
+                        placeholder = { Text("Firstname") },
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color(0x2F2F2F),
+                            unfocusedContainerColor = Color(0x2F2F2F),
+                            disabledContainerColor = Color(0x2F2F2F),
+                            errorContainerColor = Color(0x2F2F2F)
+                        ),
+                        onValueChange = {
+                            firstName.value = it
+                        }
+                    )
                 }
-            )
+                Column(
+                    modifier = Modifier.weight(1f)
+                        .padding(start = 4.dp)
+                ) {
+                    TextField(
+                        value = lastName.value ?: "",
+                        modifier = Modifier.clip(RoundedCornerShape(8.dp)),
+                        placeholder = { Text("Lastname") },
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color(0x2F2F2F),
+                            unfocusedContainerColor = Color(0x2F2F2F),
+                            disabledContainerColor = Color(0x2F2F2F),
+                            errorContainerColor = Color(0x2F2F2F)
+                        ),
+                        onValueChange = {
+                            lastName.value = it
+                        }
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                TextField(
+                    value = nickName.value ?: "",
+                    modifier = Modifier.fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp)),
+                    placeholder = { Text("Nickname") },
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color(0x2F2F2F),
+                        unfocusedContainerColor = Color(0x2F2F2F),
+                        disabledContainerColor = Color(0x2F2F2F),
+                        errorContainerColor = Color(0x2F2F2F)
+                    ),
+                    onValueChange = {
+                        nickName.value = it
+                    }
+                )
+            }
         }
     }
 }
