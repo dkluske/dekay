@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -60,6 +61,7 @@ kotlin {
             implementation(libs.sqlite.jdbc)
             implementation(libs.kotlinx.datetime)
             implementation(libs.sqldelight.primitive.adapters)
+            implementation(libs.localization.lyricist)
         }
     }
 }
