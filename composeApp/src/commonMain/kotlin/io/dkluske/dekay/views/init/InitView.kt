@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package io.dkluske.dekay.views.init
 
 import androidx.compose.foundation.Image
@@ -9,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -152,9 +156,10 @@ fun Steppable.InitViewStep1(
     val firstName = remember { mutableStateOf<String?>(null) }
     val lastName = remember { mutableStateOf<String?>(null) }
     val nickName = remember { mutableStateOf<String?>(null) }
+    val dialogState = remember { mutableStateOf(false) }
     val onNext: () -> Boolean = {
         if (firstName.value == null || lastName.value == null) {
-            // TODO: show error
+            dialogState.value = true
             false
         } else {
             settingsBuilder.step1Builder(firstName.value!!, lastName.value!!, nickName.value)
@@ -167,6 +172,26 @@ fun Steppable.InitViewStep1(
         text = "Please enter your personal information to get started.",
         onNext = onNext
     ) {
+        if (dialogState.value) {
+            AlertDialog(
+                onDismissRequest = {
+                    dialogState.value = false
+                },
+                confirmButton = {
+                    ActionButton(
+                        text = "Ok"
+                    ) {
+                        dialogState.value = false
+                    }
+                },
+                title = {
+                    Text(text = "Error")
+                },
+                text = {
+                    Text(text = "Please enter your first and last name.")
+                }
+            )
+        }
         Column(
             modifier = Modifier.fillMaxWidth()
                 .padding(8.dp)
