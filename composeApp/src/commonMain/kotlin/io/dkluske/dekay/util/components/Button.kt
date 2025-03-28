@@ -22,7 +22,7 @@ fun AddButton(
     IconButton(
         onClick = addFunction,
         colors = IconButtonColors(
-            containerColor = Color.Blue,
+            containerColor = Color(86, 136, 255, 255),
             contentColor = Color.White,
             disabledContentColor = Color.DarkGray,
             disabledContainerColor = Color.Blue
@@ -41,7 +41,7 @@ fun ActionButton(
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Blue,
+            containerColor = Color(86, 136, 255, 255),
             contentColor = Color.White,
             disabledContentColor = Color.DarkGray,
         ),

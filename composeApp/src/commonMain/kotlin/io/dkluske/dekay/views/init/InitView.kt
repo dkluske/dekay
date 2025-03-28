@@ -25,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RadialGradientShader
 import androidx.compose.ui.graphics.Shader
 import androidx.compose.ui.graphics.ShaderBrush
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -180,60 +181,35 @@ fun Steppable.InitViewStep1(
                     modifier = Modifier.weight(1f)
                         .padding(end = 4.dp)
                 ) {
-                    TextField(
-                        value = firstName.value ?: "",
-                        modifier = Modifier.clip(RoundedCornerShape(8.dp)),
-                        placeholder = { Text("Firstname") },
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color(46, 46, 46, 255),
-                            unfocusedContainerColor = Color(46, 46, 46, 255),
-                            disabledContainerColor = Color(46, 46, 46, 255),
-                            errorContainerColor = Color(46, 46, 46, 255)
-                        ),
-                        onValueChange = {
-                            firstName.value = it
-                        }
-                    )
+                    StepTextInput(
+                        placeholder = "Firstname",
+                        value = firstName.value ?: ""
+                    ) {
+                        firstName.value = it
+                    }
                 }
                 Column(
                     modifier = Modifier.weight(1f)
                         .padding(start = 4.dp)
                 ) {
-                    TextField(
-                        value = lastName.value ?: "",
-                        modifier = Modifier.clip(RoundedCornerShape(8.dp)),
-                        placeholder = { Text("Lastname") },
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color(46, 46, 46, 255),
-                            unfocusedContainerColor = Color(46, 46, 46, 255),
-                            disabledContainerColor = Color(46, 46, 46, 255),
-                            errorContainerColor = Color(46, 46, 46, 255)
-                        ),
-                        onValueChange = {
-                            lastName.value = it
-                        }
-                    )
+                    StepTextInput(
+                        placeholder = "Lastname",
+                        value = lastName.value ?: ""
+                    ) {
+                        lastName.value = it
+                    }
                 }
             }
             Row(
                 modifier = Modifier.fillMaxWidth()
                     .padding(8.dp)
             ) {
-                TextField(
-                    value = nickName.value ?: "",
-                    modifier = Modifier.fillMaxWidth()
-                        .clip(RoundedCornerShape(8.dp)),
-                    placeholder = { Text("Nickname") },
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color(46, 46, 46, 255),
-                        unfocusedContainerColor = Color(46, 46, 46, 255),
-                        disabledContainerColor = Color(46, 46, 46, 255),
-                        errorContainerColor = Color(46, 46, 46, 255)
-                    ),
-                    onValueChange = {
-                        nickName.value = it
-                    }
-                )
+                StepTextInput(
+                    placeholder = "Nickname",
+                    value = nickName.value ?: ""
+                ) {
+                    nickName.value = it
+                }
             }
         }
     }
@@ -443,6 +419,41 @@ private fun StepTitle(text: String) {
         fontSize = 24.sp,
         fontWeight = FontWeight.Bold,
         color = Color(200f, 200f, 200f)
+    )
+}
+
+@Composable
+private fun StepTextInput(
+    placeholder: String,
+    value: String,
+    onValueChange: (String) -> Unit
+) {
+    TextField(
+        value = value,
+        modifier = Modifier.fillMaxWidth()
+            .clip(RoundedCornerShape(8.dp)),
+        placeholder = {
+            Text(
+                text = placeholder,
+                color = Color(200, 200, 200, 255),
+                fontSize = 16.sp
+            )
+        },
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color(60, 60, 60, 200),
+            unfocusedContainerColor = Color(60, 60, 60, 200),
+            disabledContainerColor = Color(60, 60, 60, 200),
+            errorContainerColor = Color(60, 60, 60, 200),
+            focusedIndicatorColor = Color(220, 220, 220, 255),
+            errorIndicatorColor = Color(220, 220, 220, 255),
+        ),
+        onValueChange = {
+            onValueChange(it)
+        },
+        textStyle = TextStyle(
+            color = Color(200, 200, 200, 255),
+            fontSize = 16.sp
+        )
     )
 }
 
