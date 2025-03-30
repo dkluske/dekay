@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -245,11 +247,16 @@ fun Steppable.InitViewStep2(
     settingsBuilder: SettingsBuilder,
     step2Builder: SettingsBuilder.(LocalDate, Int, Settings.Gender) -> Unit
 ) {
-    val dateOfBirth = mutableStateOf(LocalDate(2000, 1, 1))
-    val height = mutableStateOf(180)
+    val dateOfBirth = mutableStateOf<LocalDate?>(null)
+    val height = mutableStateOf<Int?>(null)
     val gender = mutableStateOf(Settings.Gender.NOT_DEFINED)
     val onNext: () -> Boolean = {
-        settingsBuilder.step2Builder(dateOfBirth.value, height.value, gender.value)
+        // TODO: remove default values and add validation
+        settingsBuilder.step2Builder(
+            dateOfBirth.value ?: LocalDate(1970, 1, 1),
+            height.value ?: 180,
+            gender.value
+        )
         true
     }
     
@@ -258,7 +265,58 @@ fun Steppable.InitViewStep2(
         text = "Please enter your health information to get started.",
         onNext = onNext
     ) {
-        
+        Column(
+            modifier = Modifier.fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                        .padding(end = 4.dp)
+                ) {
+                    // TODO: Localized Date formatter
+                    InputButton(
+                        displayValue = dateOfBirth.value?.toString() ?: "Date of Birth",
+                        onClick = {
+                            // TODO: Date picker
+                        }
+                    )
+                }
+                Column(
+                    modifier = Modifier.weight(1f)
+                        .padding(start = 4.dp)
+                ) {
+                    InputButton(
+                        displayValue = height.value?.toString() ?: "Height",
+                        onClick = {
+                            // TODO: Height picker
+                        }
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                InputButton(
+                    displayValue = when (gender.value) {
+                        Settings.Gender.MALE -> "Male"
+                        Settings.Gender.FEMALE -> "Female"
+                        Settings.Gender.NOT_DEFINED -> "Not defined"
+                    },
+                    onClick = {
+                        // TODO: Gender Picker (selection)
+                    }
+                )
+            }
+        }
     }
 }
 
@@ -480,6 +538,31 @@ private fun StepTextInput(
             fontSize = 16.sp
         )
     )
+}
+
+@Composable
+private fun InputButton(
+    displayValue: String,
+    onClick: () -> Unit
+) {
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(60, 60, 60, 200),
+            disabledContainerColor = Color(60, 60, 60, 200)
+        ),
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(6.dp)
+    ) {
+        Text(
+            text = displayValue,
+            modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
+            style = TextStyle(
+                color = Color(200, 200, 200, 255),
+                fontSize = 16.sp
+            )
+        )
+    }
 }
 
 interface Steppable {
