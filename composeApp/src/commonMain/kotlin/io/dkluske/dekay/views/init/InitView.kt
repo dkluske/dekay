@@ -336,7 +336,24 @@ fun Steppable.InitViewStep3(
         text = "Please enter your daily step goal to get started.",
         onNext = onNext
     ) {
-        
+        Column(
+            modifier = Modifier.fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                InputButton(
+                    displayValue = "${stepGoal.value} Steps",
+                    onClick = {
+                        // TODO: Step goal picker
+                    }
+                )
+            }
+        }
     }
 }
 
