@@ -82,6 +82,7 @@ val DeStrings = Strings(
     initStep2Title = "Schritt 2: Körperdaten",
     dateOfBirth = "Geburtsdatum",
     height = "Größe",
+    gender = "Geschlecht"
     male = "Männlich",
     female = "Weiblich",
     notDefined = "Nicht angegeben",
