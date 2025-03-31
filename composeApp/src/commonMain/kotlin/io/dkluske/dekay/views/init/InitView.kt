@@ -1,8 +1,5 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package io.dkluske.dekay.views.init
 
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -12,9 +9,6 @@ import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
 import kotlinx.datetime.LocalDate
 
-/**
- * TODO: i18N
- */
 @Composable
 fun InitView(
     ui: UI
@@ -22,6 +16,8 @@ fun InitView(
     val index = remember { mutableStateOf(0) }
     val stepMax = 5
     val steppable = object : Steppable {
+        override val ui: UI
+            get() = ui
 
         override fun previous() {
             index.value = index.value.minus(1).coerceAtLeast(0)
@@ -78,6 +74,7 @@ fun InitView(
 }
 
 interface Steppable {
+    val ui: UI
     fun previous()
 
     fun next()

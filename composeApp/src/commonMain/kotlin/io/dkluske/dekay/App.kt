@@ -28,6 +28,7 @@ import app.cash.sqldelight.db.SqlDriver
 import io.dkluske.dekay.database.Database
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.components.Card
+import io.dkluske.dekay.util.localization.EnStrings
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
 import io.dkluske.dekay.views.habits.HabitsView
@@ -56,7 +57,9 @@ fun App(
         val ui = remember {
             UI(
                 state = initialView,
-                database = mutableStateOf(database)
+                database = mutableStateOf(database),
+                // TODO: determine Language dynamically
+                texts = mutableStateOf(EnStrings)
             )
         }
         Scaffold(

@@ -18,7 +18,7 @@ fun Steppable.InitViewStart() {
     InitWrapperStepView(
         title = null,
         text = null,
-        nextButtonText = "Start"
+        nextButtonText = ui.texts.value.start
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()
@@ -41,11 +41,7 @@ fun Steppable.InitViewStart() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 StepText(
-                    text = """
-                        In order to use dekay properly, we need some information from you in a few simple steps.
-                        
-                        No worries wo won't sell any of them.
-                    """.trimIndent()
+                    text = ui.texts.value.initStep1Text
                 )
             }
         }
