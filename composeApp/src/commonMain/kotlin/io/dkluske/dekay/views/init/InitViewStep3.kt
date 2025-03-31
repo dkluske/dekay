@@ -24,8 +24,8 @@ fun Steppable.InitViewStep3(
     }
 
     InitDataStepView(
-        title = "Step 3: Daily Step Goal",
-        text = "Please enter your daily step goal to get started.",
+        title = ui.texts.value.initStep3Title,
+        text = ui.texts.value.initStep3Text,
         onNext = onNext
     ) {
         Column(
@@ -38,8 +38,9 @@ fun Steppable.InitViewStep3(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                // TODO: number formatting
                 InputButton(
-                    displayValue = "${stepGoal.value} Steps",
+                    displayValue = "${stepGoal.value} ${ui.texts.value.steps}",
                     onClick = {
                         // TODO: Step goal picker
                     }

@@ -36,8 +36,8 @@ fun Steppable.InitViewStep1(
     }
 
     InitDataStepView(
-        title = "Step 1: Personal Information",
-        text = "Please enter your personal information to get started.",
+        title = ui.texts.value.initStep1Title,
+        text = ui.texts.value.initStep1Text,
         onNext = onNext
     ) {
         if (dialogState.value) {
@@ -47,16 +47,16 @@ fun Steppable.InitViewStep1(
                 },
                 confirmButton = {
                     ActionButton(
-                        text = "Ok"
+                        text = ui.texts.value.ok
                     ) {
                         dialogState.value = false
                     }
                 },
                 title = {
-                    Text(text = "Error")
+                    Text(text = ui.texts.value.error)
                 },
                 text = {
-                    Text(text = "Please enter your first and last name.")
+                    Text(text = ui.texts.value.pleaseEnterFirstAndLastName)
                 }
             )
         }
@@ -75,7 +75,7 @@ fun Steppable.InitViewStep1(
                         .padding(end = 4.dp)
                 ) {
                     StepTextInput(
-                        placeholder = "Firstname",
+                        placeholder = ui.texts.value.firstName,
                         value = firstName.value ?: ""
                     ) {
                         firstName.value = it
@@ -86,7 +86,7 @@ fun Steppable.InitViewStep1(
                         .padding(start = 4.dp)
                 ) {
                     StepTextInput(
-                        placeholder = "Lastname",
+                        placeholder = ui.texts.value.lastName,
                         value = lastName.value ?: ""
                     ) {
                         lastName.value = it
@@ -98,7 +98,7 @@ fun Steppable.InitViewStep1(
                     .padding(8.dp)
             ) {
                 StepTextInput(
-                    placeholder = "Nickname",
+                    placeholder = ui.texts.value.nickName,
                     value = nickName.value ?: ""
                 ) {
                     nickName.value = it
