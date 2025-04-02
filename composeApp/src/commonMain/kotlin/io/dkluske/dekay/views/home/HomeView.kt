@@ -1,7 +1,10 @@
 package io.dkluske.dekay.views.home
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
@@ -12,12 +15,14 @@ import io.dkluske.dekay.views.UI
 fun HomeView(
     ui: UI
 ) {
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier.padding(bottom = 35.dp)
+    ) {
         item {
             PaddedMaxWidthRow {
                 CardText(
                     text = "Hi ${ui.configuration.value.username}!",
-                    scaleFactor = 1.3f
+                    scaleFactor = 1.5f
                 )
             }
         }
