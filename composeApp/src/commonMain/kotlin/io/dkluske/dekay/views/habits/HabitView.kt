@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
@@ -35,6 +36,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.Weekday
 import io.dkluske.dekay.util.components.AddButton
@@ -147,18 +149,21 @@ private fun HabitDays(
     checkedOnes: List<Weekday>
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(8.dp),
-        horizontalArrangement = Arrangement.Start
+        modifier = Modifier.fillMaxWidth().padding(8.dp).padding(start = 8.dp),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Weekday.entries.toTypedArray().forEach { day ->
             Box(
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(4.dp)
+                    .size(20.dp)
                     .background(
-                        Color.LightGray,
+                        Color(94, 94, 94, 255),
                         CircleShape
-                    ),
-                contentAlignment = Alignment.Center
+                    )
+                    .align(Alignment.CenterVertically),
+                contentAlignment = Alignment.Center,
             ) {
                 Text(
                     text = "${day.initial}",
@@ -167,7 +172,8 @@ private fun HabitDays(
                         Color.Green
                     } else Color.Black,
                     style = TextStyle(
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 10.sp
                     )
                 )
                 
@@ -201,7 +207,8 @@ private fun HabitBottomSheet(
             sheetState = sheetState,
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight(),
+                .wrapContentHeight()
+                .padding(bottom = 20.dp),
             containerColor = CUSTOM_THEME_DARK.background,
             content = {
                 val titleInput = remember { mutableStateOf(TextFieldValue()) }
@@ -277,9 +284,12 @@ private fun AddHabitModalBottomSheetButton(
         ),
         shape = RoundedCornerShape(8.dp)
     ) {
-        CardText(
+        Text(
             text = text,
-            scaleFactor = 0.7f
+            style = TextStyle(
+                fontSize = 16.sp
+            ),
+            color = Color(200, 200, 200, 255)
         )
     }
 }
