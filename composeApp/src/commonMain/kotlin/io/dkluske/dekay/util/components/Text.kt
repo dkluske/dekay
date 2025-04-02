@@ -20,7 +20,7 @@ fun CardText(
         text = text,
         color = CUSTOM_THEME_DARK.onPrimary,
         style = TextStyle(
-            fontSize = (25 * scaleFactor).sp
+            fontSize = (18 * scaleFactor).sp
         ),
         fontWeight = FontWeight.Bold,
         modifier = modifier.padding(16.dp)
