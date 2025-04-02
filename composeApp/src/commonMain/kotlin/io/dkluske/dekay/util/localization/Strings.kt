@@ -25,6 +25,11 @@ data class Strings(
     val steps: String,
     val finished: String,
     val startYourJourney: String,
+    val cancel: String,
+    val add: String,
+    val title: String,
+    val description: String,
+    val habit: String
 )
 
 object Locales {
@@ -60,7 +65,12 @@ val EnStrings = Strings(
     steps = "Steps",
     finished = "Finished",
     initStepFinishText = "Congratulations! You have finished the onboarding process. You are now ready to begin your journey with dekay.",
-    startYourJourney = "Start your journey"
+    startYourJourney = "Start your journey",
+    cancel = "Cancel",
+    add = "Add",
+    title = "Title",
+    description = "Description",
+    habit = "Habit"
 )
 
 val DeStrings = Strings(
@@ -91,5 +101,10 @@ val DeStrings = Strings(
     steps = "Schritte",
     finished = "Geschafft",
     initStepFinishText = "Glückwunsch! Wir haben nun alle notwendigen Informationen von Dir. Du bist jetzt soweit in den Erlebnis mit dekay zu starten!",
-    startYourJourney = "Starte Dein Erlebnis"
+    startYourJourney = "Starte Dein Erlebnis",
+    cancel = "Abbruch",
+    add = "Neu",
+    title = "Titel",
+    description = "Beschreibung",
+    habit = "Habit"
 )

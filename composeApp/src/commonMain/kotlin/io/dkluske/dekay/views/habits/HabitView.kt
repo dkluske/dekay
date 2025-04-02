@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalUuidApi::class)
+
 package io.dkluske.dekay.views.habits
 
 import androidx.compose.foundation.background
@@ -136,7 +138,8 @@ fun HabitsView(
         }
     }
     HabitBottomSheet(
-        modal = modalBottomSheet
+        modal = modalBottomSheet,
+        ui = ui
     )
 }
 
@@ -187,7 +190,8 @@ private fun HabitDays(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun HabitBottomSheet(
-    modal: AddHabitModalBottomSheet
+    modal: AddHabitModalBottomSheet,
+    ui: UI
 ) {
     val sheetState = rememberModalBottomSheetState()
 
@@ -215,7 +219,7 @@ private fun HabitBottomSheet(
                 val descriptionInput = remember { mutableStateOf(TextFieldValue()) }
                 PaddedMaxWidthRow {
                     CardText(
-                        text = "Habit" // TODO: localization
+                        text = ui.texts.value.habit
                     )
                 }
                 PaddedMaxWidthRow {
@@ -224,7 +228,7 @@ private fun HabitBottomSheet(
                         onValueChange = {
                             titleInput.value = TextFieldValue(it)
                         },
-                        placeholder = "Title" // TODO: localization
+                        placeholder = ui.texts.value.title
                     )
                 }
                 PaddedMaxWidthRow {
@@ -233,30 +237,33 @@ private fun HabitBottomSheet(
                         onValueChange = {
                             descriptionInput.value = TextFieldValue(it)
                         },
-                        placeholder = "Description", // TODO: localization
+                        placeholder = ui.texts.value.description,
                         minLines = 3
-                    )
-                }
-                PaddedMaxWidthRow {
-                    HabitDays(
-                        checkedOnes = emptyList(),
-                        checkable = true
                     )
                 }
                 PaddedMaxWidthRow(
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
                     AddHabitModalBottomSheetButton(
-                        color = Color.Red,
-                        text = "Cancel" // TODO: localization
+                        color = Color(255, 81, 81, 255),
+                        text = ui.texts.value.cancel
                     ) {
                         modal.hide()
                     }
                     AddHabitModalBottomSheetButton(
-                        color = Color.Blue,
-                        text = "Add" // TODO: localization
+                        color = Color(86, 136, 255, 255),
+                        text = ui.texts.value.add
                     ) {
-                        // TODO: add habit to db
+                        val id = Uuid.random()
+                        val sigBits = id.toLongs { most, least -> most to least }
+                        ui.database.value.habitQueries.insert(
+                            io.dkluske.dekay.database.Habit(
+                                id_mostSigBits = sigBits.first,
+                                id_leastSigBits = sigBits.second,
+                                title = titleInput.value.text,
+                                description = descriptionInput.value.text
+                            )
+                        )
                         modal.hide()
                     }
                 }
