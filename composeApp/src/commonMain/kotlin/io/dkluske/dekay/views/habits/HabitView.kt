@@ -112,8 +112,7 @@ fun HabitsView(
                                     }
                                     Row {
                                         HabitDays(
-                                            checkedOnes = habit.checkedWeekdays,
-                                            checkable = false
+                                            checkedOnes = habit.checkedWeekdays
                                         )
                                     }
                                 }
@@ -145,8 +144,7 @@ fun HabitsView(
 
 @Composable
 private fun HabitDays(
-    checkedOnes: List<Weekday>,
-    checkable: Boolean
+    checkedOnes: List<Weekday>
 ) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(8.dp),
@@ -162,26 +160,17 @@ private fun HabitDays(
                     ),
                 contentAlignment = Alignment.Center
             ) {
-                if (checkable) {
-                    Button(
-                        onClick = {
-                            // TODO: set checked
-                        }
-                    ) {
-                        Text("${day.initial}")
-                    }
-                } else {
-                    Text(
-                        text = "${day.initial}",
-                        modifier = Modifier.padding(4.dp),
-                        color = if (checkedOnes.contains(day)) {
-                            Color.Green
-                        } else Color.Black,
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold
-                        )
+                Text(
+                    text = "${day.initial}",
+                    modifier = Modifier.padding(4.dp),
+                    color = if (checkedOnes.contains(day)) {
+                        Color.Green
+                    } else Color.Black,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold
                     )
-                }
+                )
+                
             }
         }
     }
