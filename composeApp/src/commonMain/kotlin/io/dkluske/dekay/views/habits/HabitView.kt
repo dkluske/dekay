@@ -80,21 +80,14 @@ fun HabitsView(
             }
         }
 
-        // TODO: remove when db is available
-        val mockupData = listOf(
+        val mockupData = ui.database.value.habitQueries.selectAll().executeAsList().map {
             Habit(
-                id = Uuid.random(),
-                title = "10.000 Steps",
-                targetHabitDays = listOf(
-                    Weekday.MONDAY,
-                    Weekday.WEDNESDAY,
-                    Weekday.FRIDAY
-                ),
-                checkedWeekdays = listOf(
-                    Weekday.TUESDAY
-                )
+                id = Uuid.fromLongs(it.id_mostSigBits, it.id_leastSigBits),
+                title = it.title,
+                targetHabitDays = emptyList(),
+                checkedWeekdays = emptyList(),
             )
-        )
+        }
 
         item {
             PaddedMaxWidthRow {
