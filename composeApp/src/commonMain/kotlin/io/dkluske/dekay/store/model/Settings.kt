@@ -8,10 +8,10 @@ data class Settings(
     val firstName: String,
     val lastName: String,
     val nickName: String?,
-    val dailyStepTarget: Int?,
+    val dailyStepTarget: Int,
     val gender: Gender,
     val dateOfBirth: LocalDate?,
-    val height: Int?
+    val height: Int
 ) : DBModel<DBSettings> {
     enum class Gender {
         MALE,
@@ -25,10 +25,10 @@ data class Settings(
             first_name = firstName,
             last_name = lastName,
             nick_name = nickName,
-            daily_step_target = dailyStepTarget?.toLong(),
+            daily_step_target = dailyStepTarget.toLong(),
             gender = gender.name,
-            date_of_birth = dateOfBirth?.toString(),
-            height = height?.toLong()
+            date_of_birth = dateOfBirth.toString(),
+            height = height.toLong()
         )
     }
 }
@@ -61,9 +61,9 @@ class SettingsBuilder {
         firstName = firstName,
         lastName = lastName,
         nickName = nickName,
-        dailyStepTarget = dailyStepTarget,
+        dailyStepTarget = dailyStepTarget ?: 10000,
         gender = gender,
         dateOfBirth = dateOfBirth,
-        height = height
+        height = height ?: throw IllegalArgumentException("Height is required")
     )
 }

@@ -17,7 +17,7 @@ fun HomeView(
             PaddedMaxWidthRow {
                 CardText(
                     text = "Hi ${ui.configuration.value.username}!",
-                    scaleFactor = 1.5f
+                    scaleFactor = 1.3f
                 )
             }
         }

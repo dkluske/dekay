@@ -26,7 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import app.cash.sqldelight.db.SqlDriver
 import io.dkluske.dekay.database.Database
+import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
+import io.dkluske.dekay.util.Configuration
 import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.util.localization.DeStrings
 import io.dkluske.dekay.util.localization.EnStrings
@@ -65,7 +67,17 @@ fun App(
                         "de-DE" -> DeStrings
                         else -> EnStrings
                     }
-                )
+                ),
+                configuration = mutableStateOf(settings?.let {
+                    Configuration(
+                        name = it.first_name to it.last_name,
+                        username = it.nick_name ?: it.first_name,
+                        age = 18, // TODO: age calculation
+                        height = it.height.toInt(),
+                        dailyStepTarget = it.daily_step_target.toInt(),
+                        gender = Settings.Gender.valueOf(it.gender.uppercase())
+                    )
+                } ?: Configuration())
             )
         }
         Scaffold(

@@ -3,10 +3,10 @@ CREATE TABLE settings (
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     nick_name TEXT,
-    daily_step_target INTEGER,
+    daily_step_target INTEGER NOT NULL,
     gender TEXT NOT NULL,
-    date_of_birth TEXT,
-    height INTEGER
+    date_of_birth TEXT NOT NULL,
+    height INTEGER NOT NULL
 );
 
 getSettings:
