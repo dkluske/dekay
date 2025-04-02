@@ -28,6 +28,7 @@ import app.cash.sqldelight.db.SqlDriver
 import io.dkluske.dekay.database.Database
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.components.Card
+import io.dkluske.dekay.util.localization.DeStrings
 import io.dkluske.dekay.util.localization.EnStrings
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
@@ -39,7 +40,8 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun App(
-    sqlDriver: SqlDriver
+    sqlDriver: SqlDriver,
+    language: String
 ) {
     MaterialTheme(
         colors = CUSTOM_THEME_DARK
@@ -58,8 +60,12 @@ fun App(
             UI(
                 state = initialView,
                 database = mutableStateOf(database),
-                // TODO: determine Language dynamically
-                texts = mutableStateOf(EnStrings)
+                texts = mutableStateOf(
+                    when (language) {
+                        "de-DE" -> DeStrings
+                        else -> EnStrings
+                    }
+                )
             )
         }
         Scaffold(

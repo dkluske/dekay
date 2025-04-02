@@ -5,6 +5,7 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
 import io.dkluske.dekay.store.database.DriverFactory
 import io.dkluske.dekay.util.Constants
+import java.util.Locale
 
 fun main() = singleWindowApplication(
     title = Constants.APP_NAME,
@@ -16,6 +17,7 @@ fun main() = singleWindowApplication(
     val sqlDriver = DriverFactory().createDriver(Constants.DB_NAME)
 
     App(
-        sqlDriver = sqlDriver
+        sqlDriver = sqlDriver,
+        language = Locale.getDefault().toLanguageTag()
     )
 }

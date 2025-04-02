@@ -36,12 +36,12 @@ fun Steppable.InitViewStart() {
             }
             Row(
                 modifier = Modifier.fillMaxWidth()
-                    .fillMaxHeight(0.4f),
+                    .fillMaxHeight(0.5f),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 StepText(
-                    text = ui.texts.value.initStep1Text
+                    text = ui.texts.value.initStepStartText
                 )
             }
         }

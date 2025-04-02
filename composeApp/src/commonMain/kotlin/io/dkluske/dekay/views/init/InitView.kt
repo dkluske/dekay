@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.store.model.SettingsBuilder
+import io.dkluske.dekay.util.Configuration
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
 import kotlinx.datetime.LocalDate
@@ -27,20 +28,20 @@ fun InitView(
             index.value = index.value.plus(1).coerceAtMost(stepMax)
         }
     }
-    val settingsBuilder = SettingsBuilder()
+    var settingsBuilder = remember { mutableStateOf(SettingsBuilder()) }
 
     val step1BuilderFun: SettingsBuilder.(String, String, String?) -> Unit =
         { firstName, lastName, nickName ->
-            firstName(firstName).lastName(lastName).nickName(nickName)
+            settingsBuilder.value = firstName(firstName).lastName(lastName).nickName(nickName)
         }
 
     val step2BuilderFun: SettingsBuilder.(LocalDate, Int, Settings.Gender) -> Unit =
         { dateOfBirth, height, gender ->
-            dateOfBirth(dateOfBirth).height(height).gender(gender)
+            settingsBuilder.value = dateOfBirth(dateOfBirth).height(height).gender(gender)
         }
 
     val step3BuilderFun: SettingsBuilder.(Int) -> Unit = { dailyStepTarget ->
-        dailyStepTarget(dailyStepTarget)
+        settingsBuilder.value = dailyStepTarget(dailyStepTarget)
     }
 
     with(steppable) {
@@ -48,25 +49,33 @@ fun InitView(
             0 -> InitViewStart()
             
             1 -> InitViewStep1(
-                settingsBuilder = settingsBuilder,
+                settingsBuilder = settingsBuilder.value,
                 step1Builder = step1BuilderFun
             )
 
             2 -> InitViewStep2(
-                settingsBuilder = settingsBuilder,
+                settingsBuilder = settingsBuilder.value,
                 step2Builder = step2BuilderFun
             )
 
             3 -> InitViewStep3(
-                settingsBuilder = settingsBuilder,
+                settingsBuilder = settingsBuilder.value,
                 step3Builder = step3BuilderFun
             )
 
             4 -> InitViewFinish()
 
             5 -> {
-                val settings = settingsBuilder.build()
+                val settings = settingsBuilder.value.build()
                 ui.database.value.settingsQueries.update(settings.toDatabaseModel())
+                ui.configuration.value = Configuration(
+                    name = settings.firstName to settings.lastName,
+                    username = settings.nickName ?: settings.firstName,
+                    age = 18, // TODO: calc from birthdate
+                    height = settings.height ?: 180,
+                    dailyStepTarget = settings.dailyStepTarget ?: 10000,
+                    gender = settings.gender
+                )
                 ui.state.value = View.Home()
             }
         }
