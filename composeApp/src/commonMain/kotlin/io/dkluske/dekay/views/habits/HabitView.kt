@@ -44,6 +44,7 @@ import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
 import io.dkluske.dekay.util.components.TextInput
+import io.dkluske.dekay.util.format.format
 import io.dkluske.dekay.util.format.parseLocalDate
 import io.dkluske.dekay.views.UI
 import kotlinx.datetime.Clock
@@ -149,7 +150,19 @@ fun HabitsView(
                                     Row {
                                         IconButton(
                                             onClick = {
-                                                // TODO: set checked
+                                                // TODO: remove clickability when today already checked
+                                                val entryId = Uuid.random().toLongs { most, least ->
+                                                    most to least
+                                                }
+                                                ui.database.value.habitEntryQueries.insert(
+                                                    io.dkluske.dekay.database.HabitEntry(
+                                                        id_mostSigBits = entryId.first,
+                                                        id_leastSigBits = entryId.second,
+                                                        habit_id_mostSigBits = habit.id.toLongs { most, least -> most },
+                                                        habit_id_leastSigBits = habit.id.toLongs { _, least -> least },
+                                                        check_date = today.format()
+                                                    )
+                                                )
                                             }
                                         ) {
                                             Icon(Icons.Default.Done, "done")
