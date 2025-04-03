@@ -44,6 +44,7 @@ import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
 import io.dkluske.dekay.util.components.TextInput
+import io.dkluske.dekay.util.format.parseLocalDate
 import io.dkluske.dekay.views.UI
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DateTimeUnit
@@ -52,7 +53,6 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.isoDayNumber
 import kotlinx.datetime.minus
 import kotlinx.datetime.plus
-import kotlinx.datetime.toLocalDate
 import kotlinx.datetime.todayIn
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -108,7 +108,7 @@ fun HabitsView(
                 HabitEntry(
                     id = Uuid.fromLongs(entry.id_mostSigBits, entry.id_leastSigBits),
                     habitId = Uuid.fromLongs(it.id_mostSigBits, it.id_leastSigBits),
-                    checkDate = entry.check_date.toLocalDate() // TODO: date parsing
+                    checkDate = entry.check_date.parseLocalDate()
                 )
             }.sortedBy { entry -> entry.checkDate }.filter { entry ->
                 entry.checkDate in startOfWeek..endOfWeek
