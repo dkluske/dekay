@@ -37,14 +37,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.dkluske.dekay.store.model.HabitEntry
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
-import io.dkluske.dekay.util.Weekday
 import io.dkluske.dekay.util.components.AddButton
 import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
 import io.dkluske.dekay.util.components.TextInput
 import io.dkluske.dekay.views.UI
+import kotlinx.datetime.Clock
+import kotlinx.datetime.DateTimeUnit
+import kotlinx.datetime.DayOfWeek
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.isoDayNumber
+import kotlinx.datetime.minus
+import kotlinx.datetime.plus
+import kotlinx.datetime.toLocalDate
+import kotlinx.datetime.todayIn
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -52,8 +61,8 @@ import kotlin.uuid.Uuid
 data class Habit(
     val id: Uuid,
     val title: String,
-    val targetHabitDays: List<Weekday>,
-    val checkedWeekdays: List<Weekday>
+    val targetHabitDays: List<DayOfWeek>,
+    val checkedWeekdays: List<DayOfWeek>
 )
 
 
@@ -80,12 +89,35 @@ fun HabitsView(
             }
         }
 
+        val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
+        val startOfWeek = today.minus(
+            value = today.dayOfWeek.isoDayNumber - 1,
+            unit = DateTimeUnit.DAY
+        )
+        val endOfWeek = today.plus(
+            value = 7 - today.dayOfWeek.isoDayNumber,
+            unit = DateTimeUnit.DAY
+        )
+
         val mockupData = ui.database.value.habitQueries.selectAll().executeAsList().map {
+            val lastEntries = ui.database.value.habitEntryQueries.selectLastXEntriesByHabitId(
+                it.id_mostSigBits,
+                it.id_leastSigBits,
+                7
+            ).executeAsList().map { entry ->
+                HabitEntry(
+                    id = Uuid.fromLongs(entry.id_mostSigBits, entry.id_leastSigBits),
+                    habitId = Uuid.fromLongs(it.id_mostSigBits, it.id_leastSigBits),
+                    checkDate = entry.check_date.toLocalDate() // TODO: date parsing
+                )
+            }.sortedBy { entry -> entry.checkDate }.filter { entry ->
+                entry.checkDate in startOfWeek..endOfWeek
+            }.map { entry -> entry.checkDate.dayOfWeek }
             Habit(
                 id = Uuid.fromLongs(it.id_mostSigBits, it.id_leastSigBits),
                 title = it.title,
-                targetHabitDays = emptyList(),
-                checkedWeekdays = emptyList(),
+                targetHabitDays = DayOfWeek.entries,
+                checkedWeekdays = lastEntries,
             )
         }
 
@@ -139,27 +171,32 @@ fun HabitsView(
 
 @Composable
 private fun HabitDays(
-    checkedOnes: List<Weekday>
+    checkedOnes: List<DayOfWeek>
 ) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(8.dp).padding(start = 8.dp),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Weekday.entries.toTypedArray().forEach { day ->
+        DayOfWeek.entries.toTypedArray().forEach { day ->
+            val color = if (checkedOnes.contains(day)) {
+                Color(110, 110, 110, 255)
+            } else {
+                Color(94, 94, 94, 255)
+            }
             Box(
                 modifier = Modifier
                     .padding(4.dp)
                     .size(20.dp)
                     .background(
-                        Color(94, 94, 94, 255),
+                        color,
                         CircleShape
                     )
                     .align(Alignment.CenterVertically),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
-                    text = "${day.initial}",
+                    text = "${day.name[0]}",
                     modifier = Modifier.padding(4.dp),
                     color = if (checkedOnes.contains(day)) {
                         Color.Green
