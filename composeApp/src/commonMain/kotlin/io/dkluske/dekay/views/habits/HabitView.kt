@@ -154,8 +154,12 @@ fun HabitsView(
                                 Column(
                                     modifier = Modifier.weight(1f)
                                 ) {
-                                    val checked = habit.checkedWeekdays.map { it.second }
-                                        .contains(today.dayOfWeek)
+                                    val checked = remember { 
+                                        mutableStateOf(
+                                            habit.checkedWeekdays.map { it.second }
+                                                .contains(today.dayOfWeek)
+                                        ) 
+                                    }
                                     Row {
                                         IconButton(
                                             onClick = {
@@ -173,6 +177,7 @@ fun HabitsView(
                                                             check_date = today.format()
                                                         )
                                                     )
+                                                    checked.value = true
                                                 } else {
                                                     habit.checkedWeekdays.first { it.second == today.dayOfWeek }
                                                         .let {
@@ -180,6 +185,7 @@ fun HabitsView(
                                                                 id_mostSigBits = it.first.toLongs { most, _ -> most },
                                                                 id_leastSigBits = it.first.toLongs { _, least -> least }
                                                             )
+                                                            checked.value = false
                                                         }
                                                 }
                                             },
