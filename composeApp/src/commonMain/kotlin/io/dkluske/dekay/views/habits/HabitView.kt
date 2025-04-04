@@ -191,7 +191,7 @@ fun HabitsView(
                                             },
                                             colors = IconButtonColors(
                                                 containerColor = Color.Transparent,
-                                                contentColor = if (checked) {
+                                                contentColor = if (checked.value) {
                                                     Color(61, 255, 58, 255)
                                                 } else {
                                                     Color(16, 16, 16, 255)
