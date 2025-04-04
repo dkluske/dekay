@@ -76,6 +76,44 @@ fun HabitsView(
     val modalBottomSheet = AddHabitModalBottomSheet(
         isShown = remember { mutableStateOf(false) }
     )
+    val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
+    val startOfWeek = today.minus(
+        value = today.dayOfWeek.isoDayNumber - 1,
+        unit = DateTimeUnit.DAY
+    )
+    val endOfWeek = today.plus(
+        value = 7 - today.dayOfWeek.isoDayNumber,
+        unit = DateTimeUnit.DAY
+    )
+
+    val habitList = remember { mutableStateOf(emptyList<Habit>()) }
+    val habitEntries = remember { mutableStateOf(emptyMap<Habit, List<HabitEntry>>()) }
+
+    habitList.value = ui.database.value.habitQueries.selectAll().executeAsList().map { habit ->
+        val lastEntries = ui.database.value.habitEntryQueries.selectLastXEntriesByHabitId(
+            habit.id_mostSigBits,
+            habit.id_leastSigBits,
+            7
+        ).executeAsList().map { entry ->
+            HabitEntry(
+                id = Uuid.fromLongs(entry.id_mostSigBits, entry.id_leastSigBits),
+                habitId = Uuid.fromLongs(habit.id_mostSigBits, habit.id_leastSigBits),
+                checkDate = entry.check_date.parseLocalDate()
+            )
+        }.sortedBy { entry -> entry.checkDate }.filter { entry ->
+            entry.checkDate in startOfWeek..endOfWeek
+        }
+        val mappedHabit = Habit(
+            id = Uuid.fromLongs(habit.id_mostSigBits, habit.id_leastSigBits),
+            title = habit.title,
+            targetHabitDays = DayOfWeek.entries,
+            checkedWeekdays = lastEntries.map { entry -> entry.id to entry.checkDate.dayOfWeek },
+        )
+        habitEntries.value += mappedHabit to lastEntries
+
+        mappedHabit
+    }
+
     LazyColumn {
         item {
             PaddedMaxWidthRow(
@@ -91,42 +129,10 @@ fun HabitsView(
             }
         }
 
-        val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
-        val startOfWeek = today.minus(
-            value = today.dayOfWeek.isoDayNumber - 1,
-            unit = DateTimeUnit.DAY
-        )
-        val endOfWeek = today.plus(
-            value = 7 - today.dayOfWeek.isoDayNumber,
-            unit = DateTimeUnit.DAY
-        )
-
-        val mockupData = ui.database.value.habitQueries.selectAll().executeAsList().map {
-            val lastEntries = ui.database.value.habitEntryQueries.selectLastXEntriesByHabitId(
-                it.id_mostSigBits,
-                it.id_leastSigBits,
-                7
-            ).executeAsList().map { entry ->
-                HabitEntry(
-                    id = Uuid.fromLongs(entry.id_mostSigBits, entry.id_leastSigBits),
-                    habitId = Uuid.fromLongs(it.id_mostSigBits, it.id_leastSigBits),
-                    checkDate = entry.check_date.parseLocalDate()
-                )
-            }.sortedBy { entry -> entry.checkDate }.filter { entry ->
-                entry.checkDate in startOfWeek..endOfWeek
-            }.map { entry -> entry.id to entry.checkDate.dayOfWeek }
-            Habit(
-                id = Uuid.fromLongs(it.id_mostSigBits, it.id_leastSigBits),
-                title = it.title,
-                targetHabitDays = DayOfWeek.entries,
-                checkedWeekdays = lastEntries,
-            )
-        }
-
         item {
             PaddedMaxWidthRow {
                 Column {
-                    mockupData.forEach { habit ->
+                    habitList.value.forEach { habit ->
                         Card {
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
@@ -201,7 +207,18 @@ fun HabitsView(
     }
     HabitBottomSheet(
         modal = modalBottomSheet,
-        ui = ui
+        ui = ui,
+        onAdd = {
+            ui.database.value.habitQueries.insert(it)
+            habitList.value += it.let {
+                Habit(
+                    id = Uuid.fromLongs(it.id_mostSigBits, it.id_leastSigBits),
+                    title = it.title,
+                    targetHabitDays = DayOfWeek.entries,
+                    checkedWeekdays = emptyList()
+                )
+            }
+        }
     )
 }
 
@@ -252,7 +269,8 @@ private fun HabitDays(
 @OptIn(ExperimentalMaterial3Api::class)
 private fun HabitBottomSheet(
     modal: AddHabitModalBottomSheet,
-    ui: UI
+    ui: UI,
+    onAdd: (io.dkluske.dekay.database.Habit) -> Unit
 ) {
     val sheetState = rememberModalBottomSheetState()
 
@@ -318,7 +336,8 @@ private fun HabitBottomSheet(
                     ) {
                         val id = Uuid.random()
                         val sigBits = id.toLongs { most, least -> most to least }
-                        ui.database.value.habitQueries.insert(
+
+                        onAdd(
                             io.dkluske.dekay.database.Habit(
                                 id_mostSigBits = sigBits.first,
                                 id_leastSigBits = sigBits.second,
