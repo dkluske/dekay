@@ -168,10 +168,13 @@ fun HabitsView(
                                                     )
                                                 } else {
                                                     // delete habit entry
-                                                    ui.database.value.habitEntryQueries.deleteById(
-                                                        id_mostSigBits = habit.id.toLongs { most, _ -> most },
-                                                        id_leastSigBits = habit.id.toLongs { _, least -> least }
-                                                    )
+                                                    habit.checkedWeekdays.first { it.second == today.dayOfWeek }
+                                                        .let {
+                                                            ui.database.value.habitEntryQueries.deleteById(
+                                                                id_mostSigBits = it.first.toLongs { most, _ -> most },
+                                                                id_leastSigBits = it.first.toLongs { _, least -> least }
+                                                            )
+                                                        }
                                                 }
                                             }
                                         ) {
