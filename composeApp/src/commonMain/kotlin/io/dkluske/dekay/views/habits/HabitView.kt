@@ -63,7 +63,7 @@ data class Habit(
     val id: Uuid,
     val title: String,
     val targetHabitDays: List<DayOfWeek>,
-    val checkedWeekdays: List<DayOfWeek>
+    val checkedWeekdays: List<Pair<Uuid, DayOfWeek>>
 )
 
 
@@ -113,7 +113,7 @@ fun HabitsView(
                 )
             }.sortedBy { entry -> entry.checkDate }.filter { entry ->
                 entry.checkDate in startOfWeek..endOfWeek
-            }.map { entry -> entry.checkDate.dayOfWeek }
+            }.map { entry -> entry.id to entry.checkDate.dayOfWeek }
             Habit(
                 id = Uuid.fromLongs(it.id_mostSigBits, it.id_leastSigBits),
                 title = it.title,
@@ -140,29 +140,39 @@ fun HabitsView(
                                     }
                                     Row {
                                         HabitDays(
-                                            checkedOnes = habit.checkedWeekdays
+                                            checkedOnes = habit.checkedWeekdays.map { it.second }
                                         )
                                     }
                                 }
                                 Column(
                                     modifier = Modifier.weight(1f)
                                 ) {
+                                    val checked = habit.checkedWeekdays.map { it.second }
+                                        .contains(today.dayOfWeek)
                                     Row {
                                         IconButton(
                                             onClick = {
-                                                // TODO: remove clickability when today already checked
-                                                val entryId = Uuid.random().toLongs { most, least ->
-                                                    most to least
-                                                }
-                                                ui.database.value.habitEntryQueries.insert(
-                                                    io.dkluske.dekay.database.HabitEntry(
-                                                        id_mostSigBits = entryId.first,
-                                                        id_leastSigBits = entryId.second,
-                                                        habit_id_mostSigBits = habit.id.toLongs { most, least -> most },
-                                                        habit_id_leastSigBits = habit.id.toLongs { _, least -> least },
-                                                        check_date = today.format()
+                                                if (!checked) {
+                                                    val entryId =
+                                                        Uuid.random().toLongs { most, least ->
+                                                            most to least
+                                                        }
+                                                    ui.database.value.habitEntryQueries.insert(
+                                                        io.dkluske.dekay.database.HabitEntry(
+                                                            id_mostSigBits = entryId.first,
+                                                            id_leastSigBits = entryId.second,
+                                                            habit_id_mostSigBits = habit.id.toLongs { most, _ -> most },
+                                                            habit_id_leastSigBits = habit.id.toLongs { _, least -> least },
+                                                            check_date = today.format()
+                                                        )
                                                     )
-                                                )
+                                                } else {
+                                                    // delete habit entry
+                                                    ui.database.value.habitEntryQueries.deleteById(
+                                                        id_mostSigBits = habit.id.toLongs { most, _ -> most },
+                                                        id_leastSigBits = habit.id.toLongs { _, least -> least }
+                                                    )
+                                                }
                                             }
                                         ) {
                                             Icon(Icons.Default.Done, "done")
