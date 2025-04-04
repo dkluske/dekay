@@ -21,6 +21,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -167,7 +168,6 @@ fun HabitsView(
                                                         )
                                                     )
                                                 } else {
-                                                    // delete habit entry
                                                     habit.checkedWeekdays.first { it.second == today.dayOfWeek }
                                                         .let {
                                                             ui.database.value.habitEntryQueries.deleteById(
@@ -176,7 +176,17 @@ fun HabitsView(
                                                             )
                                                         }
                                                 }
-                                            }
+                                            },
+                                            colors = IconButtonColors(
+                                                containerColor = Color.Transparent,
+                                                contentColor = if (checked) {
+                                                    Color(61, 255, 58, 255)
+                                                } else {
+                                                    Color(16, 16, 16, 255)
+                                                },
+                                                disabledContentColor = Color.DarkGray,
+                                                disabledContainerColor = Color.Transparent
+                                            )
                                         ) {
                                             Icon(Icons.Default.Done, "done")
                                         }
