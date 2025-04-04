@@ -163,7 +163,7 @@ fun HabitsView(
                                     Row {
                                         IconButton(
                                             onClick = {
-                                                if (!checked) {
+                                                if (!checked.value) {
                                                     val entryId =
                                                         Uuid.random().toLongs { most, least ->
                                                             most to least
