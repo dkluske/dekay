@@ -72,7 +72,7 @@ fun App(
                     Configuration(
                         name = it.first_name to it.last_name,
                         username = it.nick_name ?: it.first_name,
-                        age = 18, // TODO: age calculation
+                        age = settings.date_of_birth.parseLocalDate(), // TODO: age calculation
                         height = it.height.toInt(),
                         dailyStepTarget = it.daily_step_target.toInt(),
                         gender = Settings.Gender.valueOf(it.gender.uppercase())
