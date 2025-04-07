@@ -13,13 +13,13 @@ import androidx.compose.ui.unit.dp
 import io.dkluske.dekay.store.model.SettingsBuilder
 
 @Composable
-fun Steppable.InitViewStep3(
+fun Steppable.InitViewStep5(
     settingsBuilder: SettingsBuilder,
-    step3Builder: SettingsBuilder.(Int) -> Unit
+    step5Builder: SettingsBuilder.(Int) -> Unit
 ) {
-    val height = mutableStateOf<Int>(170)
+    val stepGoal = mutableStateOf(10000)
     val onNext: () -> Boolean = {
-        settingsBuilder.step3Builder(height.value)
+        settingsBuilder.step5Builder(stepGoal.value)
         true
     }
 
@@ -34,14 +34,13 @@ fun Steppable.InitViewStep3(
             Row(
                 modifier = Modifier.fillMaxWidth()
                     .padding(8.dp),
-                horizontalArrangement = Arrangement.Center,
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // TODO: number formatting
                 InputButton(
-                    displayValue = "${ui.texts.value.steps}",
+                    displayValue = "${stepGoal.value} ${ui.texts.value.steps}",
                     onClick = {
-                        // TODO: Step goal picker
+                        // TODO: Gender Picker (selection)
                     }
                 )
             }

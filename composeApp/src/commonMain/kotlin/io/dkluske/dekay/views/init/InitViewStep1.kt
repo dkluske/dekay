@@ -37,7 +37,6 @@ fun Steppable.InitViewStep1(
 
     InitDataStepView(
         title = ui.texts.value.initStep1Title,
-        text = ui.texts.value.initStep1Text,
         onNext = onNext
     ) {
         if (dialogState.value) {

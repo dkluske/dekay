@@ -15,7 +15,7 @@ fun InitView(
     ui: UI
 ) {
     val index = remember { mutableStateOf(0) }
-    val stepMax = 5
+    val stepMax = 7
     val steppable = object : Steppable {
         override val ui: UI
             get() = ui
@@ -35,13 +35,21 @@ fun InitView(
             settingsBuilder.value = firstName(firstName).lastName(lastName).nickName(nickName)
         }
 
-    val step2BuilderFun: SettingsBuilder.(LocalDate, Int, Settings.Gender) -> Unit =
-        { dateOfBirth, height, gender ->
-            settingsBuilder.value = dateOfBirth(dateOfBirth).height(height).gender(gender)
+    val step2BuilderFun: SettingsBuilder.(LocalDate) -> Unit =
+        { dateOfBirth ->
+            settingsBuilder.value = dateOfBirth(dateOfBirth)
         }
 
-    val step3BuilderFun: SettingsBuilder.(Int) -> Unit = { dailyStepTarget ->
-        settingsBuilder.value = dailyStepTarget(dailyStepTarget)
+    val step3BuilderFun: SettingsBuilder.(Int) -> Unit = { height ->
+        settingsBuilder.value = height(height)
+    }
+
+    val step4BuilderFun: SettingsBuilder.(Settings.Gender) -> Unit = { gender ->
+        settingsBuilder.value = gender(gender)
+    }
+
+    val step5BuilderFun: SettingsBuilder.(Int) -> Unit = { steps ->
+        settingsBuilder.value = dailyStepTarget(steps)
     }
 
     with(steppable) {
@@ -63,9 +71,19 @@ fun InitView(
                 step3Builder = step3BuilderFun
             )
 
-            4 -> InitViewFinish()
+            4 -> InitViewStep4(
+                settingsBuilder = settingsBuilder.value,
+                step4Builder = step4BuilderFun
+            )
 
-            5 -> {
+            5 -> InitViewStep5(
+                settingsBuilder = settingsBuilder.value,
+                step5Builder = step5BuilderFun
+            )
+
+            6 -> InitViewFinish()
+
+            7 -> {
                 val settings = settingsBuilder.value.build()
                 ui.database.value.settingsQueries.update(settings.toDatabaseModel())
                 ui.configuration.value = Configuration(

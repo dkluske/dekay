@@ -15,7 +15,6 @@ import io.dkluske.dekay.util.components.ActionButton
 @Composable
 fun Steppable.InitDataStepView(
     title: String,
-    text: String,
     onNext: () -> Boolean,
     block: @Composable Steppable.() -> Unit
 ) {
@@ -25,12 +24,6 @@ fun Steppable.InitDataStepView(
                 .padding(8.dp)
         ) {
             StepTitle(title)
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            StepText(text)
         }
         Row(
             modifier = Modifier.fillMaxWidth()
@@ -50,7 +43,7 @@ fun Steppable.InitDataStepView(
                     .padding(end = 4.dp)
             ) {
                 ActionButton(
-                    text = "Back",
+                    text = " < ",
                     onClick = {
                         previous()
                     }
@@ -61,7 +54,7 @@ fun Steppable.InitDataStepView(
                     .padding(start = 4.dp)
             ) {
                 ActionButton(
-                    text = "Next",
+                    text = " > ",
                     onClick = {
                         if (onNext()) {
                             next()

@@ -11,15 +11,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.dkluske.dekay.store.model.SettingsBuilder
+import io.dkluske.dekay.store.model.Settings
 
 @Composable
-fun Steppable.InitViewStep3(
+fun Steppable.InitViewStep4(
     settingsBuilder: SettingsBuilder,
-    step3Builder: SettingsBuilder.(Int) -> Unit
+    step4Builder: SettingsBuilder.(Settings.Gender) -> Unit
 ) {
-    val height = mutableStateOf<Int>(170)
+    val gender = mutableStateOf<Settings.Gender>(Settings.Gender.NOT_DEFINED)
     val onNext: () -> Boolean = {
-        settingsBuilder.step3Builder(height.value)
+        settingsBuilder.step4Builder(
+            gender.value
+        )
         true
     }
 
