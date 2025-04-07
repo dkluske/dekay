@@ -89,7 +89,7 @@ fun InitView(
                 ui.configuration.value = Configuration(
                     name = settings.firstName to settings.lastName,
                     username = settings.nickName ?: settings.firstName,
-                    age = 18, // TODO: calc from birthdate
+                    age = settings.dateOfBirth, // TODO: calc from birthdate
                     height = settings.height ?: 180,
                     dailyStepTarget = settings.dailyStepTarget ?: 10000,
                     gender = settings.gender

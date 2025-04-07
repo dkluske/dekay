@@ -27,7 +27,7 @@ fun Steppable.InitViewStep4(
     }
 
     InitDataStepView(
-        title = ui.texts.value.initStep3Title,
+        title = ui.texts.value.initStep4Title,
         onNext = onNext
     ) {
         Column(
