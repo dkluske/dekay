@@ -15,7 +15,7 @@ fun Steppable.InitViewStep4(
     settingsBuilder: SettingsBuilder,
     step4Builder: SettingsBuilder.(Settings.Gender) -> Unit
 ) {
-    val gender = mutableStateOf<Settings.Gender>(Settings.Gender.NOT_DEFINED)
+    val gender = mutableStateOf(Settings.Gender.NOT_DEFINED)
     val onNext: () -> Boolean = {
         settingsBuilder.step4Builder(
             gender.value
