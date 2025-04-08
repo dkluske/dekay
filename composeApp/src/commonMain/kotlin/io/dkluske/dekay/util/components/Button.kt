@@ -1,6 +1,5 @@
 package io.dkluske.dekay.util.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -22,7 +21,7 @@ fun AddButton(
     IconButton(
         onClick = addFunction,
         colors = IconButtonColors(
-            containerColor = Color(86, 136, 255, 255),
+            containerColor = Color(45, 45, 255, 255),
             contentColor = Color.White,
             disabledContentColor = Color.DarkGray,
             disabledContainerColor = Color.Blue
@@ -41,11 +40,11 @@ fun ActionButton(
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(86, 136, 255, 255),
+            containerColor = Color(45, 45, 255, 255),
             contentColor = Color.White,
             disabledContentColor = Color.DarkGray,
         ),
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier,
         shape = RoundedCornerShape(6.dp)
     ) {
         Text(text)

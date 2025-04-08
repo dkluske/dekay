@@ -62,7 +62,8 @@ fun Steppable.InitWrapperStepView(
                 text = nextButtonText,
                 onClick = {
                     next()
-                }
+                },
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }

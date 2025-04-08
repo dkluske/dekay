@@ -40,10 +40,11 @@ fun Steppable.InitDataStepView(
         ) {
             Column(
                 modifier = Modifier.weight(1f)
-                    .padding(end = 4.dp)
+                    .padding(end = 4.dp),
+                horizontalAlignment = Alignment.Start
             ) {
                 ActionButton(
-                    text = " < ",
+                    text = "<",
                     onClick = {
                         previous()
                     }
@@ -51,10 +52,11 @@ fun Steppable.InitDataStepView(
             }
             Column(
                 modifier = Modifier.weight(1f)
-                    .padding(start = 4.dp)
+                    .padding(start = 4.dp),
+                horizontalAlignment = Alignment.End
             ) {
                 ActionButton(
-                    text = " > ",
+                    text = ">",
                     onClick = {
                         if (onNext()) {
                             next()

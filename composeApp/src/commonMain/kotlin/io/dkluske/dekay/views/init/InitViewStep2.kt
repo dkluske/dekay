@@ -1,13 +1,10 @@
 package io.dkluske.dekay.views.init
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.dkluske.dekay.store.model.SettingsBuilder
@@ -18,7 +15,7 @@ fun Steppable.InitViewStep2(
     settingsBuilder: SettingsBuilder,
     step2Builder: SettingsBuilder.(LocalDate) -> Unit
 ) {
-    val dateOfBirth = mutableStateOf<LocalDate>(LocalDate(2000, 1, 1))
+    val dateOfBirth = mutableStateOf(LocalDate(2000, 1, 1))
     val onNext: () -> Boolean = {
         // TODO: remove default values and add validation
         settingsBuilder.step2Builder(
