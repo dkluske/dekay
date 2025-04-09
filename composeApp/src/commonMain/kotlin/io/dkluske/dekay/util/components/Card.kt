@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
+import io.dkluske.dekay.views.WithUI
 
 @Composable
 fun Card(
@@ -59,7 +60,7 @@ fun CardWithFourContents(
 }
 
 @Composable
-fun <T : Any> CardList(
+fun <T : Any> WithUI.CardList(
     maxItemsBeforeWrap: Int = 3,
     showMoreAction: (() -> Unit)? = null,
     itemList: Collection<T> = emptyList(),

@@ -8,17 +8,16 @@ import io.dkluske.dekay.store.model.SettingsBuilder
 import io.dkluske.dekay.util.Configuration
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
+import io.dkluske.dekay.views.WithUI
 import kotlinx.datetime.LocalDate
 
 @Composable
-fun InitView(
-    ui: UI
-) {
+fun WithUI.InitView() {
     val index = remember { mutableStateOf(0) }
     val stepMax = 7
     val steppable = object : Steppable {
         override val ui: UI
-            get() = ui
+            get() = this@InitView.ui
 
         override fun previous() {
             index.value = index.value.minus(1).coerceAtLeast(0)

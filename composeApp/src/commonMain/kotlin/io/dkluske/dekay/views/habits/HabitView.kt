@@ -48,6 +48,7 @@ import io.dkluske.dekay.util.components.TextInput
 import io.dkluske.dekay.util.format.format
 import io.dkluske.dekay.util.format.parseLocalDate
 import io.dkluske.dekay.views.UI
+import io.dkluske.dekay.views.WithUI
 import kotlinx.datetime.Clock
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.DayOfWeek
@@ -70,9 +71,7 @@ data class Habit(
 
 @OptIn(ExperimentalUuidApi::class)
 @Composable
-fun HabitsView(
-    ui: UI
-) {
+fun WithUI.HabitsView() {
     val modalBottomSheet = AddHabitModalBottomSheet(
         isShown = remember { mutableStateOf(false) }
     )

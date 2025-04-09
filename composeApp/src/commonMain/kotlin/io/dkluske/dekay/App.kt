@@ -30,14 +30,15 @@ import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.Configuration
 import io.dkluske.dekay.util.components.Card
+import io.dkluske.dekay.util.format.parseLocalDate
 import io.dkluske.dekay.util.localization.DeStrings
 import io.dkluske.dekay.util.localization.EnStrings
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
+import io.dkluske.dekay.views.WithUI
 import io.dkluske.dekay.views.habits.HabitsView
 import io.dkluske.dekay.views.home.HomeView
 import io.dkluske.dekay.views.init.InitView
-import io.dkluske.dekay.util.format.parseLocalDate
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -73,7 +74,7 @@ fun App(
                     Configuration(
                         name = it.first_name to it.last_name,
                         username = it.nick_name ?: it.first_name,
-                        age = settings.date_of_birth.parseLocalDate(), // TODO: age calculation
+                        age = settings.date_of_birth.parseLocalDate(),
                         height = it.height.toInt(),
                         dailyStepTarget = it.daily_step_target.toInt(),
                         gender = Settings.Gender.valueOf(it.gender.uppercase())
@@ -81,6 +82,7 @@ fun App(
                 } ?: Configuration())
             )
         }
+        val withUI = WithUI(ui)
         Scaffold(
             bottomBar = {
                 if (ui.state.value !is View.Init) {
@@ -131,13 +133,15 @@ fun App(
                 Column(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    Row(modifier = Modifier.weight(9f)) {
-                        when (ui.state.value) {
-                            is View.Home -> HomeView(ui = ui)
-                            is View.Charts -> TODO()
-                            is View.Habits -> HabitsView(ui = ui)
-                            is View.Settings -> TODO()
-                            is View.Init -> InitView(ui = ui)
+                    with(withUI) {
+                        Row(modifier = Modifier.weight(9f)) {
+                            when (ui.state.value) {
+                                is View.Home -> HomeView()
+                                is View.Charts -> TODO()
+                                is View.Habits -> HabitsView()
+                                is View.Settings -> TODO()
+                                is View.Init -> InitView()
+                            }
                         }
                     }
                 }

@@ -9,12 +9,10 @@ import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
-import io.dkluske.dekay.views.UI
+import io.dkluske.dekay.views.WithUI
 
 @Composable
-fun HomeView(
-    ui: UI
-) {
+fun WithUI.HomeView() {
     LazyColumn(
         modifier = Modifier.padding(bottom = 35.dp)
     ) {
