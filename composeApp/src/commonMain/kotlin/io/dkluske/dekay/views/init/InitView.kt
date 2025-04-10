@@ -80,6 +80,8 @@ fun WithUI.InitView() {
                 step5Builder = step5BuilderFun
             )
 
+            // TODO: Add Step for accepting health data
+
             6 -> InitViewFinish()
 
             7 -> {
