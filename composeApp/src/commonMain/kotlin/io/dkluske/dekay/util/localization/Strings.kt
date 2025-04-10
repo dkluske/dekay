@@ -28,7 +28,8 @@ data class Strings(
     val add: String,
     val title: String,
     val description: String,
-    val habit: String
+    val habit: String,
+    val settings: String,
 )
 
 object Locales {
@@ -68,7 +69,8 @@ val EnStrings = Strings(
     add = "Add",
     title = "Title",
     description = "Description",
-    habit = "Habit"
+    habit = "Habit",
+    settings = "Settings"
 )
 
 val DeStrings = Strings(
@@ -103,5 +105,6 @@ val DeStrings = Strings(
     add = "Neu",
     title = "Titel",
     description = "Beschreibung",
-    habit = "Habit"
+    habit = "Habit",
+    settings = "Einstellungen"
 )
