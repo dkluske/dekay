@@ -30,6 +30,7 @@ data class Strings(
     val title: String,
     val description: String,
     val habit: String,
+    val showMore: String,
     val settings: String,
 )
 
@@ -71,6 +72,7 @@ val EnStrings = Strings(
     title = "Title",
     description = "Description",
     habit = "Habit",
+    showMore = "Show more",
     settings = "Settings",
     initStep6Title = "Health Data"
 )
@@ -107,6 +109,7 @@ val DeStrings = Strings(
     add = "Neu",
     title = "Titel",
     description = "Beschreibung",
+    showMore = "Mehr",
     habit = "Habit",
     settings = "Einstellungen",
     initStep6Title = "Gesundheitsdaten"

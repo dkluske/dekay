@@ -85,7 +85,7 @@ fun <T : Any> WithUI.CardList(
                         it.invoke()
                     },
                     content = {
-                        CardText("Show more ->") // TODO: localization
+                        CardText("${ui.texts.value.showMore} ->")
                     }
                 )
             }
