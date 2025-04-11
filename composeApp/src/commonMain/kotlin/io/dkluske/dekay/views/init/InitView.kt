@@ -14,7 +14,7 @@ import kotlinx.datetime.LocalDate
 @Composable
 fun WithUI.InitView() {
     val index = remember { mutableStateOf(0) }
-    val stepMax = 7
+    val stepMax = 8
     val steppable = object : Steppable {
         override val ui: UI
             get() = this@InitView.ui
@@ -80,19 +80,19 @@ fun WithUI.InitView() {
                 step5Builder = step5BuilderFun
             )
 
-            // TODO: Add Step for accepting health data
+            6 -> InitViewStep6()
 
-            6 -> InitViewFinish()
+            7 -> InitViewFinish()
 
-            7 -> {
+            8 -> {
                 val settings = settingsBuilder.value.build()
                 ui.database.value.settingsQueries.update(settings.toDatabaseModel())
                 ui.configuration.value = Configuration(
                     name = settings.firstName to settings.lastName,
                     username = settings.nickName ?: settings.firstName,
                     age = settings.dateOfBirth ?: LocalDate(1970, 1, 1),
-                    height = settings.height ?: 180,
-                    dailyStepTarget = settings.dailyStepTarget ?: 10000,
+                    height = settings.height,
+                    dailyStepTarget = settings.dailyStepTarget,
                     gender = settings.gender
                 )
                 ui.state.value = View.Home()
