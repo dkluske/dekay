@@ -10,6 +10,7 @@ data class Strings(
     val initStep3Title: String,
     val initStep4Title: String,
     val initStep5Title: String,
+    val initStep6Title: String,
     val initStepFinishText: String,
     val pleaseEnterFirstAndLastName: String,
     val firstName: String,
@@ -70,7 +71,8 @@ val EnStrings = Strings(
     title = "Title",
     description = "Description",
     habit = "Habit",
-    settings = "Settings"
+    settings = "Settings",
+    initStep6Title = "Health Data"
 )
 
 val DeStrings = Strings(
@@ -106,5 +108,6 @@ val DeStrings = Strings(
     title = "Titel",
     description = "Beschreibung",
     habit = "Habit",
-    settings = "Einstellungen"
+    settings = "Einstellungen",
+    initStep6Title = "Gesundheitsdaten"
 )
