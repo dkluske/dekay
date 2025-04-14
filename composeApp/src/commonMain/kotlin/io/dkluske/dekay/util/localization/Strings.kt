@@ -32,6 +32,7 @@ data class Strings(
     val habit: String,
     val showMore: String,
     val settings: String,
+    val manageHealthAccess: String,
 )
 
 object Locales {
@@ -74,7 +75,8 @@ val EnStrings = Strings(
     habit = "Habit",
     showMore = "Show more",
     settings = "Settings",
-    initStep6Title = "Health Data"
+    initStep6Title = "Health Data",
+    manageHealthAccess = "Manage Health Access"
 )
 
 val DeStrings = Strings(
@@ -112,5 +114,6 @@ val DeStrings = Strings(
     showMore = "Mehr",
     habit = "Habit",
     settings = "Einstellungen",
-    initStep6Title = "Gesundheitsdaten"
+    initStep6Title = "Health Daten",
+    manageHealthAccess = "Health Daten bearbeiten"
 )
