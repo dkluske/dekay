@@ -1,9 +1,9 @@
 [versions]
 agp = "8.8.0"
 ksp = "2.1.20-2.0.0"
-android-compileSdk = "35"
-android-minSdk = "35"
-android-targetSdk = "35"
+android-compileSdk = "34"
+android-minSdk = "34"
+android-targetSdk = "34"
 androidx-activityCompose = "1.9.3"
 androidx-appcompat = "1.7.0"
 androidx-constraintlayout = "2.2.0"
@@ -19,7 +19,6 @@ ehsannarmani-composecharts = "0.1.2"
 sqldelight = "2.1.0-SNAPSHOT"
 sqlite-jdbc = "3.49.1.0"
 localization-lyricist = "1.7.0"
-healthkmp = "0.0.7"
 
 junit = "4.13.2"
 kotlin = "2.1.20"
@@ -49,7 +48,6 @@ sqldelight-driver-ios = { group = "app.cash.sqldelight", name = "native-driver",
 sqldelight-driver-jvm = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight" }
 sqldelight-primitive-adapters = { group = "app.cash.sqldelight", name = "primitive-adapters", version.ref = "sqldelight" }
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
-healthkmp = { group = "com.viktormykhailiv", name = "health-kmp", version.ref = "healthkmp" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
