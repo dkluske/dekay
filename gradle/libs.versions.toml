@@ -19,6 +19,7 @@ ehsannarmani-composecharts = "0.1.2"
 sqldelight = "2.1.0-SNAPSHOT"
 sqlite-jdbc = "3.49.1.0"
 localization-lyricist = "1.7.0"
+healthkmp = "0.0.7"
 
 junit = "4.13.2"
 kotlin = "2.1.20"
@@ -48,6 +49,7 @@ sqldelight-driver-ios = { group = "app.cash.sqldelight", name = "native-driver",
 sqldelight-driver-jvm = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight" }
 sqldelight-primitive-adapters = { group = "app.cash.sqldelight", name = "primitive-adapters", version.ref = "sqldelight" }
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
+healthkmp = { group = "com.viktormykhailiv", name = "health-kmp", version.ref = "healthkmp" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
