@@ -55,7 +55,7 @@ fun WithUI.SettingsView() {
                     ) {
                         resetDialogState.value = false
                     }
-                }
+                },
                 title = {
                     Text(text = ui.texts.value.warning)
                 },
