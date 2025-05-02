@@ -60,6 +60,7 @@ kotlin {
             implementation(libs.sqlite.jdbc)
             implementation(libs.kotlinx.datetime)
             implementation(libs.sqldelight.primitive.adapters)
+            implementation(libs.dkluske.healthkmp)
         }
     }
 }
