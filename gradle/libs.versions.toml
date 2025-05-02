@@ -19,7 +19,7 @@ ehsannarmani-composecharts = "0.1.2"
 sqldelight = "2.1.0-SNAPSHOT"
 sqlite-jdbc = "3.49.1.0"
 localization-lyricist = "1.7.0"
-dkluske-healthkmp = "0.0.1"
+dkluske-healthkmp = "0.0.2"
 
 junit = "4.13.2"
 kotlin = "2.1.20"
