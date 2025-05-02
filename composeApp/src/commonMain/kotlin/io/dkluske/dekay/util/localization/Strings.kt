@@ -33,6 +33,9 @@ data class Strings(
     val showMore: String,
     val settings: String,
     val manageHealthAccess: String,
+    val resetApp: String,
+    val warning: String,
+    val resetAppDeletesEverything: String
 )
 
 object Locales {
@@ -76,7 +79,10 @@ val EnStrings = Strings(
     showMore = "Show more",
     settings = "Settings",
     initStep6Title = "Health Data",
-    manageHealthAccess = "Manage Health Access"
+    manageHealthAccess = "Manage Health Access",
+    resetApp = "Reset your App",
+    warning = "Warning",
+    resetAppDeletesEverything = "Resetting this App will delete all of your personalized data on dekay, are you sure to proceed?"
 )
 
 val DeStrings = Strings(
@@ -115,5 +121,8 @@ val DeStrings = Strings(
     habit = "Habit",
     settings = "Einstellungen",
     initStep6Title = "Health Daten",
-    manageHealthAccess = "Health Daten bearbeiten"
+    manageHealthAccess = "Health Daten bearbeiten",
+    resetApp = "App Reset",
+    warning = "Warnung",
+    resetAppDeletesEverything = "Das zurücksetzen dieser app löscht alle ihre persönlichen Daten in dekay, bist Du sicher?"
 )
