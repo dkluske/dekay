@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import app.cash.sqldelight.db.SqlDriver
+import com.viktormykhailiv.kmp.health.HealthManagerFactory
 import io.dkluske.dekay.database.Database
 import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
@@ -80,7 +81,10 @@ fun App(
                         dailyStepTarget = it.daily_step_target.toInt(),
                         gender = Settings.Gender.valueOf(it.gender.uppercase())
                     )
-                } ?: Configuration())
+                } ?: Configuration()),
+                health = mutableStateOf(
+                    HealthManagerFactory().createManager()
+                )
             )
         }
         val withUI = WithUI(ui)

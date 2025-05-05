@@ -1,7 +1,11 @@
 package io.dkluske.dekay.views.init
 
 import androidx.compose.runtime.Composable
-import io.dkluske.dekay.views.init.InputButton
+import com.viktormykhailiv.kmp.health.HealthDataType
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
 
 @Composable
 fun Steppable.InitViewStep6() {
@@ -12,7 +16,16 @@ fun Steppable.InitViewStep6() {
         InputButton(
             displayValue = ui.texts.value.manageHealthAccess
         ) {
-            // TODO: open health managing
+            CoroutineScope(Dispatchers.IO).launch {
+                ui.health.value.requestAuthorization(
+                    readTypes = listOf(
+                        HealthDataType.Steps,
+                        HealthDataType.ActiveCaloriesBurned,
+                        HealthDataType.Sleep
+                    ),
+                    writeTypes = listOf()
+                )
+            }
         }
     }
 }
