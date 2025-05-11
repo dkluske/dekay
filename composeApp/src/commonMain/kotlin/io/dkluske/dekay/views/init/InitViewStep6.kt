@@ -1,11 +1,9 @@
 package io.dkluske.dekay.views.init
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import com.viktormykhailiv.kmp.health.HealthDataType
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
+import io.dkluske.dekay.models.health.HealthDataType
 import kotlinx.coroutines.launch
 
 @Composable
@@ -15,6 +13,7 @@ fun Steppable.InitViewStep6() {
         title = ui.texts.value.initStep6Title,
         onNext = { true }
     ) {
+        Text(text = "Available: ${ui.health.value.isAvailable().getOrNull() == true}")
         InputButton(
             displayValue = ui.texts.value.manageHealthAccess
         ) {

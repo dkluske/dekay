@@ -25,13 +25,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import app.cash.sqldelight.db.SqlDriver
-import com.viktormykhailiv.kmp.health.HealthManagerFactory
 import io.dkluske.dekay.database.Database
 import io.dkluske.dekay.store.model.Settings
 import io.dkluske.dekay.util.CUSTOM_THEME_DARK
 import io.dkluske.dekay.util.Configuration
 import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.util.format.parseLocalDate
+import io.dkluske.dekay.util.health.DekayHealthWrapper
 import io.dkluske.dekay.util.localization.DeStrings
 import io.dkluske.dekay.util.localization.EnStrings
 import io.dkluske.dekay.views.UI
@@ -83,7 +83,7 @@ fun App(
                     )
                 } ?: Configuration()),
                 health = mutableStateOf(
-                    HealthManagerFactory().createManager()
+                    DekayHealthWrapper()
                 )
             )
         }
