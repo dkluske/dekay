@@ -3,16 +3,39 @@ package io.dkluske.dekay.views.home
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.viktormykhailiv.kmp.health.HealthDataType
 import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
 import io.dkluske.dekay.views.WithUI
+import kotlinx.datetime.*
 
 @Composable
 fun WithUI.HomeView() {
+    val activeCalories = mutableStateOf<Int?>(null)
+    val stepsToday = mutableStateOf<Int>(null)
+    val timeZone = TimeZone.currentSystemDefault()
+    val current = Clock.System.now()
+    val startOfDay = current.toLocalDateTime(timeZone).date.atStartOfDayIn(timeZone)
+
+    LaunchedEffect(Unit) {
+        activeCalories.value = ui.health.value.readData(
+            startTime = startOfDay
+            endTime = current
+            type = HealthDataType.ActiveCaloriesBurned
+        ).getOrNull()?.total?.toInt()
+        stepsToday.value = ui.health.value.readData(
+            startTime = startOfDay
+            endTime = current
+            type = HealthDataType.Steps
+        ).getOrNull()?.count
+    }
+
     LazyColumn(
         modifier = Modifier.padding(bottom = 35.dp)
     ) {
@@ -27,10 +50,17 @@ fun WithUI.HomeView() {
         item {
             PaddedMaxWidthRow {
                 // TODO: Add Health Data #4
+                val activeCaloriesText = activeCalories.value?.let {
+                    "$it kcal"
+                } ?: "n/a"
+                val stepsTodayText = stepsToday.value?.let {
+                    "$it ${ui.texts.value.steps}"
+                } ?: "n/a"
+
                 CardWithFourContents(
-                    upLeft = { CardText(text = "upLeft") },
+                    upLeft = { CardText(text = activeCaloriesText) },
                     upRight = { CardText(text = "upRight") },
-                    downLeft = { CardText(text = "downLeft") },
+                    downLeft = { CardText(text = stepsTodayText) },
                     downRight = { CardText(text = "downRight") }
                 )
             }
