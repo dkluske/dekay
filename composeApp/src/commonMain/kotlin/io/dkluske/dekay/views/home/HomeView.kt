@@ -24,16 +24,16 @@ fun WithUI.HomeView() {
     val startOfDay = current.toLocalDateTime(timeZone).date.atStartOfDayIn(timeZone)
 
     LaunchedEffect(Unit) {
-        activeCalories.value = ui.health.value.readData(
+        activeCalories.value = (ui.health.value.readData(
             startTime = startOfDay,
             endTime = current,
             type = HealthDataType.ActiveCaloriesBurned
-        ).getOrNull()?.total?.toInt()
-        stepsToday.value = ui.health.value.readData(
+        ).getOrNull() as? ActiveCaloriesBurnedRecord).total?.toInt()
+        stepsToday.value = (ui.health.value.readData(
             startTime = startOfDay,
             endTime = current,
             type = HealthDataType.Steps
-        ).getOrNull()?.count
+        ).getOrNull() as? StepsRecord)?.count
     }
 
     LazyColumn(
