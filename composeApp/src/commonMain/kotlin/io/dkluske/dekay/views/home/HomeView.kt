@@ -30,7 +30,7 @@ fun WithUI.HomeView() {
             startTime = startOfDay,
             endTime = current,
             type = HealthDataType.ActiveCaloriesBurned
-        ).getOrNull() as? ActiveCaloriesBurnedRecord).total?.toInt()
+        ).getOrNull() as? ActiveCaloriesBurnedRecord)?.total?.toInt()
         stepsToday.value = (ui.health.value.readData(
             startTime = startOfDay,
             endTime = current,
