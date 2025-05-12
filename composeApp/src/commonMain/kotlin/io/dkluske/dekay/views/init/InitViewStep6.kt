@@ -21,7 +21,7 @@ fun Steppable.InitViewStep6() {
                 HealthDataType.Sleep
             ),
             writeTypes = listOf()
-        )
+        ).getOrNull() == true
     }
     
     InitDataStepView(
