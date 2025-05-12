@@ -25,13 +25,13 @@ fun WithUI.HomeView() {
 
     LaunchedEffect(Unit) {
         activeCalories.value = ui.health.value.readData(
-            startTime = startOfDay
-            endTime = current
+            startTime = startOfDay,
+            endTime = current,
             type = HealthDataType.ActiveCaloriesBurned
         ).getOrNull()?.total?.toInt()
         stepsToday.value = ui.health.value.readData(
-            startTime = startOfDay
-            endTime = current
+            startTime = startOfDay,
+            endTime = current,
             type = HealthDataType.Steps
         ).getOrNull()?.count
     }
