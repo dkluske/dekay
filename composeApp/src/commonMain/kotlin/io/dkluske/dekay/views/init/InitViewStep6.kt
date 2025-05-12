@@ -3,7 +3,7 @@ package io.dkluske.dekay.views.init
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import io.dkluske.dekay.models.health.HealthDataType
+import com.viktormykhailiv.kmp.health.HealthDataType
 import kotlinx.coroutines.launch
 
 @Composable

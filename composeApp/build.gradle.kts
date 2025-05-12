@@ -40,12 +40,10 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.sqldelight.driver.android)
-            implementation(libs.dkluske.healthkmp)
         }
 
         iosMain.dependencies {
             implementation(libs.sqldelight.driver.ios)
-            implementation(libs.dkluske.healthkmp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -62,6 +60,7 @@ kotlin {
             implementation(libs.sqlite.jdbc)
             implementation(libs.kotlinx.datetime)
             implementation(libs.sqldelight.primitive.adapters)
+            implementation(libs.dkluske.healthkmp)
         }
     }
 }
