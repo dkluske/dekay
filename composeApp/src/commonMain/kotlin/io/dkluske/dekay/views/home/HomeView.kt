@@ -8,6 +8,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.viktormykhailiv.kmp.health.HealthDataType
+import com.viktormykhailiv.kmp.health.records.ActiveCaloriesBurnedRecord
+import com.viktormykhailiv.kmp.health.records.StepsRecord
 import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
@@ -18,7 +20,7 @@ import kotlinx.datetime.*
 @Composable
 fun WithUI.HomeView() {
     val activeCalories = mutableStateOf<Int?>(null)
-    val stepsToday = mutableStateOf<Int>(null)
+    val stepsToday = mutableStateOf<Int?>(null)
     val timeZone = TimeZone.currentSystemDefault()
     val current = Clock.System.now()
     val startOfDay = current.toLocalDateTime(timeZone).date.atStartOfDayIn(timeZone)
