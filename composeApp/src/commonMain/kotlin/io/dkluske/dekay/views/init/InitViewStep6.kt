@@ -11,10 +11,10 @@ import kotlinx.coroutines.launch
 @Composable
 fun Steppable.InitViewStep6() {
     val scope = rememberCoroutineScope()
-    var isAuthorized by mutableStateOf(false)
+    val isAuthorized = mutableStateOf(false)
 
     LaunchedEffect(Unit) {
-        isAuthorized = ui.health.value.isAuthorized(
+        isAuthorized.value = ui.health.value.isAuthorized(
             readTypes = listOf(
                 HealthDataType.Steps,
                 HealthDataType.ActiveCaloriesBurned,
@@ -29,7 +29,7 @@ fun Steppable.InitViewStep6() {
         onNext = { true }
     ) {
         InputButton(
-            displayValue = if (isAuthorized) {
+            displayValue = if (isAuthorized.value) {
                 ui.texts.value.revokeHealthAccess
             } else {
                 ui.texts.value.authorizeHealthAccess
@@ -37,7 +37,7 @@ fun Steppable.InitViewStep6() {
             
         ) {
             scope.launch {
-                if (isAuthorized) {
+                if (isAuthorized.value) {
                     ui.health.value.revokeAuthorization()
                 } else {
                     ui.health.value.requestAuthorization(
