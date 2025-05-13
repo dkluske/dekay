@@ -37,7 +37,8 @@ data class Strings(
     val warning: String,
     val resetAppDeletesEverything: String,
     val authorizeHealthAccess: String,
-    val revokeHealthAccess: String
+    val revokeHealthAccess: String,
+    val charts: String
 )
 
 object Locales {
@@ -86,7 +87,8 @@ val EnStrings = Strings(
     warning = "Warning",
     resetAppDeletesEverything = "Resetting this App will delete all of your personalized data on dekay, are you sure to proceed?",
     authorizeHealthAccess = "Authorize Health Access",
-    revokeHealthAccess = "Revoke Health Access"
+    revokeHealthAccess = "Revoke Health Access",
+    charts = "Evaluations"
 )
 
 val DeStrings = Strings(
@@ -130,5 +132,6 @@ val DeStrings = Strings(
     warning = "Warnung",
     resetAppDeletesEverything = "Das zurücksetzen dieser app löscht alle ihre persönlichen Daten in dekay, bist Du sicher?",
     authorizeHealthAccess = "Health authorisieren",
-    revokeHealthAccess = "Health deauthorisieren"
+    revokeHealthAccess = "Health deauthorisieren",
+    charts = "Auswertungen"
 )
