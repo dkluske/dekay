@@ -22,7 +22,7 @@ localization-lyricist = "1.7.0"
 dkluske-healthkmp = "0.0.7"
 
 junit = "4.13.2"
-kotlin = "2.1.20"
+kotlin = "2.1.21"
 kotlinx-dateTime = "0.6.2"
 foundationAndroid = "1.7.8"
 
