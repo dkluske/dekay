@@ -45,6 +45,8 @@ fun WithUI.SettingsView() {
                         text = ui.texts.value.ok
                     ) {
                         ui.database.value.settingsQueries.deleteSettings()
+                        ui.database.value.habitQueries.deleteAll()
+                        ui.database.value.habitEntryQueries.deleteAll()
                         resetDialogState.value = false
                         ui.state.value = View.Init()
                     }

@@ -31,6 +31,9 @@ INSERT INTO habit(
 deleteById:
 DELETE FROM habit WHERE id_mostSigBits = ? AND id_leastSigBits = ?;
 
+deleteAll:
+DELETE FROM habit;
+
 update:
 INSERT OR REPLACE INTO habit(
     id_mostSigBits,

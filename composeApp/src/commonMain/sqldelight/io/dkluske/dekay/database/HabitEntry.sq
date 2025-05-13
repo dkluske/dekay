@@ -35,3 +35,6 @@ DELETE FROM habitEntry WHERE id_mostSigBits = ? AND id_leastSigBits = ?;
 
 deleteByHabitId:
 DELETE FROM habitEntry WHERE habit_id_mostSigBits = ? AND habit_id_leastSigBits = ?;
+
+deleteAll:
+DELETE FROM habitEntry;
