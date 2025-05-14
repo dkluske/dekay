@@ -85,9 +85,9 @@ fun WithUI.ChartsView() {
                     TimeFrameButton(
                         selected = timeState.value == frame,
                         label = when (timeState.value) {
-                            DAY -> ui.texts.value.day
-                            WEEK -> ui.texts.value.week
-                            MONTH -> ui.texts.value.month
+                            TimeFrame.DAY -> ui.texts.value.day
+                            TimeFrame.WEEK -> ui.texts.value.week
+                            TimeFrame.MONTH -> ui.texts.value.month
                         }
                     ) {
                         timeState.value = frame
@@ -111,7 +111,7 @@ private fun TimeFrameButton(
             contentColor = Color.White,
             disabledContentColor = Color.DarkGray,
             disabledContainerColor = Color(200, 200, 200, 150)
-        )
+        ),
         onClick = onClick,
         shape = RoundedCornerShape(6.dp)
     ) {
