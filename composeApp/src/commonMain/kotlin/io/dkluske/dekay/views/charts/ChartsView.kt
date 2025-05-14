@@ -49,15 +49,21 @@ import io.dkluske.dekay.views.WithUI
 import kotlinx.datetime.*
 
 private enum class TimeFrame(val startDate: (Instant, TimeZone) -> Instant) {
-    DAY { endDate, zone ->
-        endDate.toLocalDateTime(zone).date.atStartOfDayIn(zone)
-    },
-    WEEK { endDate, zone ->
-        endDate.toLocalDateTime(zone).date.minus(1, DateTimeUnit.WEEK).atStartOfDayIn(zone)
-    },
-    MONTH { endDate, zone ->
-        endDate.toLocalDateTime(zone).date.minus(1, DateTimeUnit.MONTH).atStartOfDayIn(zone)
-    }
+    DAY(
+        startDate = { endDate, zone ->
+            endDate.toLocalDateTime(zone).date.atStartOfDayIn(zone)
+        }
+    ),
+    WEEK(
+        startDate = { endDate, zone ->
+            endDate.toLocalDateTime(zone).date.minus(1, DateTimeUnit.WEEK).atStartOfDayIn(zone)
+        }
+    ),
+    MONTH(
+        startDate = { endDate, zone ->
+            endDate.toLocalDateTime(zone).date.minus(1, DateTimeUnit.MONTH).atStartOfDayIn(zone)
+        }
+    )
 }
 
 @Composable
