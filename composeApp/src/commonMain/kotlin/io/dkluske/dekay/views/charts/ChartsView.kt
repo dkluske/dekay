@@ -1,5 +1,6 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,23 +46,75 @@ import io.dkluske.dekay.util.format.format
 import io.dkluske.dekay.util.format.parseLocalDate
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.WithUI
-import kotlinx.datetime.Clock
-import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.DayOfWeek
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.isoDayNumber
-import kotlinx.datetime.minus
-import kotlinx.datetime.plus
-import kotlinx.datetime.todayIn
+import kotlinx.datetime.*
+
+private enum class TimeFrame(val startDate: (Instant, TimeZone) -> Instant) {
+    DAY { endDate, zone ->
+        endDate.toLocalDateTime(zone).date.atStartOfDayIn(zone)
+    },
+    WEEK { endDate, zone ->
+        endDate.toLocalDateTime(zone).date.minus(1, DateTimeUnit.WEEK).atStartOfDayIn(zone)
+    },
+    MONTH { endDate, zone ->
+        endDate.toLocalDateTime(zone).date.minus(1, DateTimeUnit.MONTH).atStartOfDayIn(zone)
+    }
+}
 
 @Composable
 fun WithUI.ChartsView() {
-    Column(
-        modifier = Modifier.fillMaxWidth()
+    val currentTime = Clock.System.now()
+    val currentTimeZone = TimeZone.currentSystemDefault()
+    val timeState = remember { mutableStateOf(TimeFrame.DAY) }
+    val startTime = timeState.value.startDate(currentTime, currentTimeZone)
+
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth().padding(bottom = 35.dp)
     ) {
-        PaddedMaxWidthRow {
-            CardText(text = ui.texts.value.charts, scaleFactor = 1.5f)
+        item {
+            PaddedMaxWidthRow {
+                CardText(text = ui.texts.value.charts, scaleFactor = 1.5f)
+            }
         }
-        // TODO: advance here with selection buttons for day, week, month
+        item {
+            PaddedMaxWidthRow(
+                modifier = Modifier
+                    .background(Color(155, 155, 155, 255)),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                TimeFrame.entries.forEach { frame ->
+                    TimeFrameButton(
+                        selected = timeState.value == frame,
+                        label = when (timeState.value) {
+                            DAY -> ui.texts.value.day
+                            WEEK -> ui.texts.value.week
+                            MONTH -> ui.texts.value.month
+                        }
+                    ) {
+                        timeState.value = frame
+                    }
+                }
+            }
+        }
+        // TODO: charts here then
+    }
+}
+
+@Composable
+private fun TimeFrameButton(
+    selected: Boolean,
+    label: String,
+    onClick: () -> Unit
+) {
+    Button(
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(200, 200, 200, 255),
+            contentColor = Color.White,
+            disabledContentColor = Color.DarkGray,
+            disabledContainerColor = Color(200, 200, 200, 150)
+        )
+        onClick = onClick,
+        shape = RoundedCornerShape(6.dp)
+    ) {
+        Text(label)
     }
 }
