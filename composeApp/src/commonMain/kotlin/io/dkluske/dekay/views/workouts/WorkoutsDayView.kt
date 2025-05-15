@@ -74,21 +74,21 @@ fun WithUI.WorkoutsDayView() {
         item {
             PaddedMaxWidthRow {
                 Column(
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
                 ) {
                     Card {
                         // TODO: Workout minutes of this day
                     }
                 }
                 Column(
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
                 ) {
                     Card {
                         // TODO: Total calories of the workouts
                     }
                 }
                 Column(
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
                 ) {
                     Card {
                         // TODO: Count of workouts this day
