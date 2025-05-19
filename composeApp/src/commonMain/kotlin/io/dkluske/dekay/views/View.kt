@@ -10,4 +10,6 @@ sealed interface View {
     class Charts : View
 
     class Init : View
+
+    class Workouts : View
 }

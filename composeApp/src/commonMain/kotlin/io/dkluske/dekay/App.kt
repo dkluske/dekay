@@ -40,6 +40,7 @@ import io.dkluske.dekay.views.WithUI
 import io.dkluske.dekay.views.habits.HabitsView
 import io.dkluske.dekay.views.home.HomeView
 import io.dkluske.dekay.views.init.InitView
+import io.dkluske.dekay.views.workouts.WorkoutsDayView
 import io.dkluske.dekay.views.settings.SettingsView
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -146,6 +147,7 @@ fun App(
                                 is View.Habits -> HabitsView()
                                 is View.Settings -> SettingsView()
                                 is View.Init -> InitView()
+                                is View.Workouts -> WorkoutsDayView()
                             }
                         }
                     }
