@@ -141,13 +141,14 @@ fun App(
                 ) {
                     with(withUI) {
                         Row(modifier = Modifier.weight(9f)) {
-                            when (ui.state.value) {
+                            when (val view = ui.state.value) {
                                 is View.Home -> HomeView()
                                 is View.Charts -> TODO()
                                 is View.Habits -> HabitsView()
                                 is View.Settings -> SettingsView()
                                 is View.Init -> InitView()
                                 is View.Workouts -> WorkoutsDayView()
+                                is View.MealDetail -> MealDetailView(mealId = mealId)
                             }
                         }
                     }
