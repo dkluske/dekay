@@ -17,5 +17,5 @@ sealed interface View {
 
     class Workouts : View
 
-    class MealDetail(val mealId: UUID) : View
+    class MealDetail(val mealId: Uuid) : View
 }

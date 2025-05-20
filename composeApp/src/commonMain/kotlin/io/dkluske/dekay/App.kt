@@ -42,6 +42,7 @@ import io.dkluske.dekay.views.home.HomeView
 import io.dkluske.dekay.views.init.InitView
 import io.dkluske.dekay.views.workouts.WorkoutsDayView
 import io.dkluske.dekay.views.settings.SettingsView
+import io.dkluske.dekay.views.meals.MealDetailView
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -148,7 +149,7 @@ fun App(
                                 is View.Settings -> SettingsView()
                                 is View.Init -> InitView()
                                 is View.Workouts -> WorkoutsDayView()
-                                is View.MealDetail -> MealDetailView(mealId = mealId)
+                                is View.MealDetail -> MealDetailView(mealId = view.mealId)
                             }
                         }
                     }

@@ -55,7 +55,7 @@ import kotlinx.datetime.*
 @Composable
 @OptIn(ExperimentalUuidApi::class)
 fun MealDetailView(
-    mealId: UUID
+    mealId: Uuid
 ) {
 
 }
