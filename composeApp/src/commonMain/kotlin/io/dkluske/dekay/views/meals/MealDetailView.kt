@@ -1,4 +1,4 @@
-package io.dkluske.views.meals
+package io.dkluske.dekay.views.meals
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

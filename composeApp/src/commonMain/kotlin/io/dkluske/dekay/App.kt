@@ -44,8 +44,11 @@ import io.dkluske.dekay.views.workouts.WorkoutsDayView
 import io.dkluske.dekay.views.settings.SettingsView
 import io.dkluske.dekay.views.meals.MealDetailView
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @Composable
+@OptIn(ExperimentalUuidApi::class)
 @Preview
 fun App(
     sqlDriver: SqlDriver,
