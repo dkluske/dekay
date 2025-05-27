@@ -7,15 +7,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.viktormykhailiv.kmp.health.HealthDataType
-import com.viktormykhailiv.kmp.health.records.ActiveCaloriesBurnedRecord
-import com.viktormykhailiv.kmp.health.records.StepsRecord
+import com.viktormykhailiv.kmp.health.aggregateActiveCaloriesBurned
+import com.viktormykhailiv.kmp.health.aggregateSteps
 import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
 import io.dkluske.dekay.views.WithUI
-import kotlinx.datetime.*
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.toLocalDateTime
 
 @Composable
 fun WithUI.HomeView() {
@@ -26,16 +28,14 @@ fun WithUI.HomeView() {
     val startOfDay = current.toLocalDateTime(timeZone).date.atStartOfDayIn(timeZone)
 
     LaunchedEffect(Unit) {
-        activeCalories.value = (ui.health.value.readData(
+        activeCalories.value = ui.health.value.aggregateActiveCaloriesBurned(
             startTime = startOfDay,
-            endTime = current,
-            type = HealthDataType.ActiveCaloriesBurned
-        ).getOrNull() as? ActiveCaloriesBurnedRecord)?.total?.toInt()
-        stepsToday.value = (ui.health.value.readData(
+            endTime = current
+        ).getOrNull()?.total?.toInt()
+        stepsToday.value = ui.health.value.aggregateSteps(
             startTime = startOfDay,
-            endTime = current,
-            type = HealthDataType.Steps
-        ).getOrNull() as? StepsRecord)?.count
+            endTime = current
+        ).getOrNull()?.count?.toInt()
     }
 
     LazyColumn(
