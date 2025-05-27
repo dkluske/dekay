@@ -1,5 +1,5 @@
 package io.dkluske.dekay.views
 
-class WithUI(
+open class WithUI(
     val ui: UI
 )

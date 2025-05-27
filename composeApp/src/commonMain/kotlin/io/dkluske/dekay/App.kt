@@ -36,16 +36,18 @@ import io.dkluske.dekay.util.localization.DeStrings
 import io.dkluske.dekay.util.localization.EnStrings
 import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
+import io.dkluske.dekay.views.WithDateUI
 import io.dkluske.dekay.views.WithUI
 import io.dkluske.dekay.views.habits.HabitsView
 import io.dkluske.dekay.views.home.HomeView
 import io.dkluske.dekay.views.init.InitView
-import io.dkluske.dekay.views.workouts.WorkoutsDayView
-import io.dkluske.dekay.views.settings.SettingsView
 import io.dkluske.dekay.views.meals.MealDetailView
+import io.dkluske.dekay.views.meals.MealsDayView
+import io.dkluske.dekay.views.settings.SettingsView
+import io.dkluske.dekay.views.workouts.WorkoutsDayView
+import kotlinx.datetime.Clock
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 
 @Composable
 @OptIn(ExperimentalUuidApi::class)
@@ -151,8 +153,19 @@ fun App(
                                 is View.Habits -> HabitsView()
                                 is View.Settings -> SettingsView()
                                 is View.Init -> InitView()
-                                is View.Workouts -> WorkoutsDayView()
+                                is View.Workouts -> {
+                                    val dateUI = WithDateUI(
+                                        ui,
+                                        remember { mutableStateOf(Clock.System.now()) })
+                                    dateUI.WorkoutsDayView()
+                                }
                                 is View.MealDetail -> MealDetailView(mealId = view.mealId)
+                                is View.Meals -> {
+                                    val dateUI = WithDateUI(
+                                        ui,
+                                        remember { mutableStateOf(Clock.System.now()) })
+                                    dateUI.MealsDayView()
+                                }
                             }
                         }
                     }

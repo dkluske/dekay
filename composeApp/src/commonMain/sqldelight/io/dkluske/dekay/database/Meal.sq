@@ -1,7 +1,8 @@
 CREATE TABLE meal (
     id_leastSigBits INTEGER NOT NULL,
     id_mostSigBits INTEGER NOT NULL,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    add_date TEXT NOT NULL
 );
 
 CREATE UNIQUE INDEX meal_id_idx ON meal(id_leastSigBits, id_mostSigBits);
@@ -23,7 +24,8 @@ insert:
 INSERT INTO meal(
     id_leastSigBits,
     id_mostSigBits,
-    name
+    name,
+    add_date
 ) VALUES ?;
 
 deleteById:
@@ -33,5 +35,9 @@ update:
 INSERT OR REPLACE INTO meal(
     id_leastSigBits,
     id_mostSigBits,
-    name
+    name,
+    add_date
 ) VALUES ?;
+
+selectAllByDate:
+SELECT * FROM meal WHERE add_date == ?;
