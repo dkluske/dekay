@@ -3,6 +3,9 @@ package io.dkluske.dekay.views.workouts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Today
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -27,7 +30,7 @@ fun WithDateUI.WorkoutsDayView() {
                 IconButton(
                     onClick = {} // TODO: calendar date picker
                 ) {
-                    //Icon(Icons.Default., "date")
+                    Icon(Icons.Default.Today, "date")
                 }
             }
         }
