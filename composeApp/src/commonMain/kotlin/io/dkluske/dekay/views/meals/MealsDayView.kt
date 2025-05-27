@@ -1,5 +1,6 @@
 package io.dkluske.dekay.views.meals
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,7 +10,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
+import io.dkluske.dekay.database.Meal
 import io.dkluske.dekay.util.components.Card
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
@@ -23,6 +27,22 @@ import kotlin.uuid.Uuid
 @OptIn(ExperimentalUuidApi::class)
 @Composable
 fun WithDateUI.MealsDayView() {
+    val meals = mutableStateListOf<Meal>()
+
+    LaunchedEffect(meals) {
+        meals.clear()
+        val resolvedMeals = kotlin.runCatching {
+            ui.database.value.mealQueries.selectAllByDate(
+                currentDate().toLocalDateTime(
+                    TimeZone.currentSystemDefault()
+                ).date.toString()
+            ).executeAsList()
+        }.getOrNull() ?: emptyList()
+        meals.addAll(
+            resolvedMeals
+        )
+    }
+
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -32,8 +52,10 @@ fun WithDateUI.MealsDayView() {
             }
         }
         item {
-            PaddedMaxWidthRow {
-                CardText(text = currentDate().toString(), scaleFactor = 1.1f)
+            PaddedMaxWidthRow(
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                CardText(text = formattedDate(), scaleFactor = 1.1f)
                 IconButton(
                     onClick = {} // TODO: calendar date picker
                 ) {
@@ -59,12 +81,6 @@ fun WithDateUI.MealsDayView() {
                 }
             }
         }
-
-        val meals = ui.database.value.mealQueries.selectAllByDate(
-            currentDate().toLocalDateTime(
-                TimeZone.currentSystemDefault()
-            ).date.toString()
-        ).executeAsList()
 
         items(meals.size) { mealIndex ->
             val meal = meals[mealIndex]

@@ -1,7 +1,12 @@
 package io.dkluske.dekay.views.home
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -13,6 +18,7 @@ import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
 import io.dkluske.dekay.util.components.PaddedMaxWidthRow
+import io.dkluske.dekay.views.View
 import io.dkluske.dekay.views.WithUI
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -42,11 +48,20 @@ fun WithUI.HomeView() {
         modifier = Modifier.padding(bottom = 35.dp)
     ) {
         item {
-            PaddedMaxWidthRow {
+            PaddedMaxWidthRow(
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 CardText(
                     text = "Hi ${ui.configuration.value.username}!",
                     scaleFactor = 1.5f
                 )
+                IconButton(
+                    onClick = {
+                        ui.state.value = View.Settings()
+                    }
+                ) {
+                    Icon(Icons.Default.Settings, "settings")
+                }
             }
         }
         item {

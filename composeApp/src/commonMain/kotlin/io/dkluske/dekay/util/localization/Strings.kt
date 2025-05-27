@@ -44,6 +44,7 @@ data class Strings(
     val month: String,
     val workouts: String,
     val meals: String,
+    val today: String,
 )
 
 object Locales {
@@ -98,7 +99,8 @@ val EnStrings = Strings(
     week = "Week",
     month = "Month",
     workouts = "Workouts",
-    meals = "Meals"
+    meals = "Meals",
+    today = "Today"
 )
 
 val DeStrings = Strings(
@@ -148,5 +150,6 @@ val DeStrings = Strings(
     week = "Woche",
     month = "Monat",
     workouts = "Trainings",
-    meals = "Mahlzeiten"
+    meals = "Mahlzeiten",
+    today = "Heute"
 )

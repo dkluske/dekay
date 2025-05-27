@@ -1,5 +1,6 @@
 package io.dkluske.dekay.views.workouts
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,8 +26,10 @@ fun WithDateUI.WorkoutsDayView() {
             }
         }
         item {
-            PaddedMaxWidthRow {
-                CardText(text = currentDate().toString(), scaleFactor = 1.1f)
+            PaddedMaxWidthRow(
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                CardText(text = formattedDate(), scaleFactor = 1.1f)
                 IconButton(
                     onClick = {} // TODO: calendar date picker
                 ) {

@@ -13,10 +13,11 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.BarChart
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.LunchDining
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -38,6 +39,7 @@ import io.dkluske.dekay.views.UI
 import io.dkluske.dekay.views.View
 import io.dkluske.dekay.views.WithDateUI
 import io.dkluske.dekay.views.WithUI
+import io.dkluske.dekay.views.charts.ChartsView
 import io.dkluske.dekay.views.habits.HabitsView
 import io.dkluske.dekay.views.home.HomeView
 import io.dkluske.dekay.views.init.InitView
@@ -118,21 +120,28 @@ fun App(
                                         ui.state.value = View.Habits()
                                     }
                                 ) {
-                                    Icon(Icons.Default.Add, "habits")
+                                    Icon(Icons.Default.Check, "habits")
+                                }
+                                IconButton(
+                                    onClick = {
+                                        ui.state.value = View.Workouts()
+                                    }
+                                ) {
+                                    Icon(Icons.Default.FitnessCenter, "workouts")
+                                }
+                                IconButton(
+                                    onClick = {
+                                        ui.state.value = View.Meals()
+                                    }
+                                ) {
+                                    Icon(Icons.Default.LunchDining, "meals")
                                 }
                                 IconButton(
                                     onClick = {
                                         ui.state.value = View.Charts()
                                     }
                                 ) {
-                                    Icon(Icons.Default.Done, "charts")
-                                }
-                                IconButton(
-                                    onClick = {
-                                        ui.state.value = View.Settings()
-                                    }
-                                ) {
-                                    Icon(Icons.Default.Settings, "settings")
+                                    Icon(Icons.Default.BarChart, "charts")
                                 }
                             }
                         }
@@ -149,7 +158,7 @@ fun App(
                         Row(modifier = Modifier.weight(9f)) {
                             when (val view = ui.state.value) {
                                 is View.Home -> HomeView()
-                                is View.Charts -> TODO()
+                                is View.Charts -> ChartsView()
                                 is View.Habits -> HabitsView()
                                 is View.Settings -> SettingsView()
                                 is View.Init -> InitView()
