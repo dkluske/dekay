@@ -17,3 +17,4 @@ pluginManagement {
 }
 
 include(":composeApp")
+include(":productsearch")
