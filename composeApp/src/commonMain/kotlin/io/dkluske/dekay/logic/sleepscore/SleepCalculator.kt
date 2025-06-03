@@ -38,7 +38,7 @@ object SleepCalculator {
             private val optimalSleepTime = (MIN_OPTIMAL_SLEEP_TIME..MAX_OPTIMAL_SLEEP_TIME)
 
             fun calcPointMultiplicator(distanceFromMean: Long): Double {
-                return (-1000 * distanceFromMean.pow(2f)) + 1
+                return (-1000 * distanceFromMean.toDouble().pow(2f)) + 1
             }
         }
     }
