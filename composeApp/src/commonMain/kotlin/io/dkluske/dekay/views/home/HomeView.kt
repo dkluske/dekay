@@ -29,6 +29,7 @@ import kotlinx.datetime.toLocalDateTime
 fun WithUI.HomeView() {
     val activeCalories = mutableStateOf<Int?>(null)
     val stepsToday = mutableStateOf<Int?>(null)
+    val sleepScoreToday = mutableStateOf<Int?>(null)
     val timeZone = TimeZone.currentSystemDefault()
     val current = Clock.System.now()
     val startOfDay = current.toLocalDateTime(timeZone).date.atStartOfDayIn(timeZone)
@@ -42,6 +43,12 @@ fun WithUI.HomeView() {
             startTime = startOfDay,
             endTime = current
         ).getOrNull()?.count?.toInt()
+        sleepScoreToday.value = ui.health.value.aggregateSleep(
+            startTime = startOfDay,
+            endTime = current
+        ).getOrNull()?.let {
+            0 // TODO: calc sleep score
+        }
     }
 
     LazyColumn(
@@ -73,12 +80,15 @@ fun WithUI.HomeView() {
                 val stepsTodayText = stepsToday.value?.let {
                     "$it ${ui.texts.value.steps}"
                 } ?: "n/a"
+                val sleepScoreTodayText = sleepScoreToday.value?.let {
+                    "$it %"
+                } ?: "n/a"
 
                 CardWithFourContents(
                     upLeft = { CardText(text = activeCaloriesText) },
                     upRight = { CardText(text = "upRight") },
                     downLeft = { CardText(text = stepsTodayText) },
-                    downRight = { CardText(text = "downRight") }
+                    downRight = { CardText(text = sleepScoreTodayText) }
                 )
             }
         }
