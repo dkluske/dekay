@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.viktormykhailiv.kmp.health.aggregateActiveCaloriesBurned
 import com.viktormykhailiv.kmp.health.aggregateSteps
+import com.viktormykhailiv.kmp.health.aggregateSleep
 import io.dkluske.dekay.util.components.CardList
 import io.dkluske.dekay.util.components.CardText
 import io.dkluske.dekay.util.components.CardWithFourContents
