@@ -1,5 +1,7 @@
 package io.dkluske.dekay.logic.sleepscore
 
+import kotlin.math.pow
+
 object SleepCalculator {
     data class SleepData(
         val age: Int,
@@ -38,7 +40,7 @@ object SleepCalculator {
             private val optimalSleepTime = (MIN_OPTIMAL_SLEEP_TIME..MAX_OPTIMAL_SLEEP_TIME)
 
             fun calcPointMultiplicator(distanceFromMean: Long): Double {
-                return (-1000 * distanceFromMean.toDouble().pow(2f)) + 1
+                return (-1000 * distanceFromMean.toDouble().pow(2.0)) + 1
             }
         }
     }
