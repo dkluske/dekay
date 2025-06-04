@@ -47,6 +47,7 @@ fun WithUI.SettingsView() {
                         ui.database.value.settingsQueries.deleteSettings()
                         ui.database.value.habitQueries.deleteAll()
                         ui.database.value.habitEntryQueries.deleteAll()
+                        ui.health.value.revokeAuthorization()
                         resetDialogState.value = false
                         ui.state.value = View.Init()
                     }
