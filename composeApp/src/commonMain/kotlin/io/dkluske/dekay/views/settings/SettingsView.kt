@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,6 +33,7 @@ import io.dkluske.dekay.views.WithUI
 fun WithUI.SettingsView() {
     val settings = ui.database.value.settingsQueries.getSettings().executeAsList().first()
     val resetDialogState = remember { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -44,12 +46,14 @@ fun WithUI.SettingsView() {
                     ActionButton(
                         text = ui.texts.value.ok
                     ) {
-                        ui.database.value.settingsQueries.deleteSettings()
-                        ui.database.value.habitQueries.deleteAll()
-                        ui.database.value.habitEntryQueries.deleteAll()
-                        ui.health.value.revokeAuthorization()
-                        resetDialogState.value = false
-                        ui.state.value = View.Init()
+                        scope.launch {
+                            ui.database.value.settingsQueries.deleteSettings()
+                            ui.database.value.habitQueries.deleteAll()
+                            ui.database.value.habitEntryQueries.deleteAll()
+                            ui.health.value.revokeAuthorization()
+                            resetDialogState.value = false
+                            ui.state.value = View.Init()
+                        }
                     }
                 },
                 dismissButton = {
