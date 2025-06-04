@@ -28,6 +28,7 @@ import io.dkluske.dekay.util.components.PaddedMaxWidthRow
 import io.dkluske.dekay.util.components.ActionButton
 import io.dkluske.dekay.views.View
 import io.dkluske.dekay.views.WithUI
+import kotlinx.coroutines.launch
 
 @Composable
 fun WithUI.SettingsView() {
