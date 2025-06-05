@@ -31,16 +31,17 @@ fun WithDateUI.MealsDayView() {
 
     LaunchedEffect(meals) {
         meals.clear()
-        val resolvedMeals = kotlin.runCatching {
+        kotlin.runCatching {
             ui.database.value.mealQueries.selectAllByDate(
                 currentDate().toLocalDateTime(
                     TimeZone.currentSystemDefault()
                 ).date.toString()
             ).executeAsList()
-        }.getOrNull() ?: emptyList()
-        meals.addAll(
-            resolvedMeals
-        )
+        }.onSuccess {
+            meals.addAll(it)
+        }.onFailure {
+            println(it)
+        }
     }
 
     LazyColumn(
