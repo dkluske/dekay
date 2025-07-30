@@ -21,7 +21,7 @@ sqlite-jdbc = "3.50.3.0"
 localization-lyricist = "1.7.0"
 dkluske-healthkmp = "0.0.7"
 jetbrains-compose-icons = "1.7.3"
-ktor-client = "3.2.2"
+ktor-client = "3.2.3"
 
 junit = "4.13.2"
 kotlin = "2.2.0"
