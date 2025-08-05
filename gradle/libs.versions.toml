@@ -25,7 +25,7 @@ ktor-client = "3.2.3"
 
 junit = "4.13.2"
 kotlin = "2.2.0"
-kotlinx-dateTime = "0.6.2"
+kotlinx-dateTime = "0.7.1-0.6.x-compat"
 foundationAndroid = "1.8.2"
 kotlinStdlib = "2.1.21"
 runner = "1.5.2"
