@@ -24,7 +24,7 @@ jetbrains-compose-icons = "1.7.3"
 ktor-client = "3.2.3"
 
 junit = "4.13.2"
-kotlin = "2.2.0"
+kotlin = "2.2.10"
 kotlinx-dateTime = "0.6.2"
 foundationAndroid = "1.8.2"
 kotlinStdlib = "2.1.21"
